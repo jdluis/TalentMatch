@@ -12,10 +12,8 @@ router.get('/signup', (req, res, next) => {
 
 router.post('/signup', async (req, res, next) => {
 
-    const { email, password, passwordCheck, role } = req.params;
+    const { email, password, passwordCheck, role } = req.body;
     const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm;
-
-    console.log(role);
 
     // Validations
     if( email === "" || password === "" || passwordCheck === "" || role === undefined) {
@@ -41,12 +39,14 @@ router.post('/signup', async (req, res, next) => {
 
     try {
         
-        const foundDev = Dev.findOne({email: email});
-        const foundCompany = Company.findOne({email: email});
+        const foundDev = await Dev.findOne({email: email});
+        const foundCompany = await Company.findOne({email: email});
+        console.log(foundDev)
+        console.log(foundCompany)
 
         if ( foundDev !== null || foundCompany !== null) {
             res.status(401).render('auth/signup-form.hbs', {
-                errorMsg: "Email registered!"
+                errorMsg: "Email registered!, try again!"
             })
             return
         };
@@ -61,7 +61,7 @@ router.post('/signup', async (req, res, next) => {
                 email,
                 password: hashPassword
             })
-        } else if( rol === 'company') {
+        } else if( role === 'company') {
             await Company.create({
                 email,
                 password: hashPassword
