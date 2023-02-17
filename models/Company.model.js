@@ -18,7 +18,7 @@ const CompanySchema = new Schema(
       required: true,
       trim:true
     },
-    rol: {
+    role: {
       type: String,
       default: "company",
       trim:true
