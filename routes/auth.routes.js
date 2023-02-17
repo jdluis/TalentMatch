@@ -66,7 +66,8 @@ router.post('/signup', async (req, res, next) => {
         } else {
             await Company.create({
                 email,
-                password: hashPassword
+                password: hashPassword,
+                companyName: email
             })
         };
 
