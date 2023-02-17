@@ -121,7 +121,7 @@ router.post('/login', async (req, res, next) => {
             req.session.User = foundDev;
             req.session.save(() => {
                 //main de dev
-                res.redirect('/')
+                res.redirect('/dev')
             })
 
         } else if ( foundCompany ) {
@@ -137,7 +137,7 @@ router.post('/login', async (req, res, next) => {
             req.session.User = foundCompany;
             req.session.save(() => {
                 //main de company
-                res.redirect('/')
+                res.redirect('/company')
             })
         };
 

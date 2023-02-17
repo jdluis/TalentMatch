@@ -84,7 +84,7 @@ const devSchema = new Schema(
       },
     ],
     isWorking: Boolean,
-    rol: {
+    role: {
       type: String,
       default: "dev",
     },
