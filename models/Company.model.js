@@ -50,7 +50,7 @@ const CompanySchema = new Schema(
     },
     markedDevs: [
       {
-        type: ObjectId,
+        type: Schema.Types.ObjectId,
         ref: "Dev",
       },
     ],
