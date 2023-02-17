@@ -6,8 +6,8 @@ router.get("/", (req, res, next) => {
   res.render("index");
 });
 
-router.get("/auth/login", (req, res, next) => {
-  res.render("auth/login-form.hbs")
-})
+// Auth Routes
+const authRoutes = require('./auth.routes.js');
+router.use('/auth', authRoutes);
 
 module.exports = router;

@@ -18,7 +18,7 @@ router.post('/signup', async (req, res, next) => {
     console.log(role);
 
     // Validations
-    if( email === "" || password === "" || passwordCheck === "") {
+    if( email === "" || password === "" || passwordCheck === "" || role === undefined) {
         res.status(401).render('auth/signup-form.hbs', {
             errorMsg: "All inputs should be completed"
         })
@@ -78,7 +78,7 @@ router.post('/signup', async (req, res, next) => {
 });
 
 router.get('/login', (req, res, next) => {
-    res.render('auth/login-form-hbs')
+    res.render('auth/login-form.hbs')
 })
 
 module.exports = router;
