@@ -1,0 +1,66 @@
+<div>
+  <h1>Edit Company</h1>
+<div>
+  <form action="/company/edit" method="post">
+    <div>
+      <label for="companyName">Company Name</label>
+      <input type="companyName" value="{{company.companyName}}" name="companyName" />
+    </div>
+
+    <div>
+      <label for="email">Email</label>
+      <input type="text" value="{{company.email}}" name="email" />
+    </div>
+
+    <div>
+      <label for="description">Description</label>
+      <input type="text" value="{{company.description}}" name="description" />
+    </div>
+
+    <div>
+      <label for="telephone">Telephone</label>
+      <input type="tel" value="{{company.telephone}}" name="telephone" />
+    </div>
+
+    <div>
+      <label for="direction">Direction</label>
+      <input type="text" value="{{company.direction}}" name="direction" />
+    </div>
+
+    <div>
+      <label for="linkedin">Linkedin</label>
+      <input type="text" value="{{company.linkedin}}" name="linkedin" />
+    </div>
+
+    <div>
+      <label for="facebook">Facebook</label>
+      <input type="text" value="{{company.facebook}}" name="facebook" />
+    </div>
+
+     <div>
+      <label for="twitter">Twitter</label>
+      <input type="text" value="{{company.twitter}}" name="twitter" />
+    </div>
+
+     <div>
+      <label for="website">Web Site</label>
+      <input type="text" value="{{company.website}}" name="website" />
+    </div>
+
+     <div>
+      <label for="techStack">Tech Stack</label>
+      <input type="text" placeholder="Insert New" name="techStack" />
+      <h5>Tech Stack Used:</h5>
+      <p>
+      {{#each company.techStack}}
+        <span>{{this}}</span>,
+       {{/each}}
+       </p>
+    </div>
+
+    <button>Update</button>
+    <div>
+      {{errorMsg}}
+    </div>
+  </form>
+</div>

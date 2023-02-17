@@ -54,7 +54,7 @@ const CompanySchema = new Schema(
         ref: "Dev",
       },
     ],
-    techSkills: [
+    techStack: [
       {
         type: String,
         enum: [

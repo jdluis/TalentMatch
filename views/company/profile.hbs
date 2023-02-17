@@ -1,0 +1,29 @@
+<div>
+  <h1>{{company.name}} Profile</h1>
+  <div>
+    <p><span>Name: </span>{{company.companyName}}</p>
+    <p><span>email: </span>{{company.email}}</p>
+    <p><span>Telephone: </span>{{company.telephone}}</p>
+    <p><span>Location: </span>{{company.direction}}</p>
+    <p><span>Description: </span>{{company.description}}</p>
+    <p><span>Tech Stack: </span></p>
+    <ul>
+      {{#each company.techStack}}
+        <li>{{this}}</li>
+      {{/each}}
+    </ul>
+    <a href="{{company.website}}">Web Site</a>
+    <a href="{{company.linkedin}}">Linkedin</a>
+    <a href="{{company.facebook}}">Facebook</a>
+    <a href="{{company.twitter}}">Twitter</a>
+    <p><span>Developers Following: </span></p>
+    <ul>
+      {{#each company.markedDevs}}
+       <li><a href="/company/{{this._id}}/details">{{this.name}}</a></li>
+      {{/each}}
+    </ul>
+  </div>
+  <div>
+    <a href="/company/edit"><button>Edit Profile</button></a>
+  </div>
+</div>

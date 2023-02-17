@@ -1,0 +1,28 @@
+<div>
+    <h1>Main Company</h1>
+
+    <div id="filter-container">
+        <form action="/company" method="post">
+        <div>
+            <h4>Serach: </h4>
+            <input placeholder="Search" type="search" name="search">
+             <button>Search</button>
+        </div>
+        <div>
+            <h4>Filters:</h4>
+            <label for="markedDevs">Marked Devs:</label>
+            <input type="checkbox" name="markedDevs" value="true">
+            <label for="markedDevs">Experiencia Minima en años:</label>
+            <input type="number" name="experience" placeholder="Min Exp">
+        </div>
+        </form>
+    </div>
+
+    {{#each devList}}
+    <div>
+        <h3>-> {{this.email}}</h3>
+        <h3>-> {{this.role}}</h3>
+        <a href="/company/{{this._id}}/details">See More</a>
+    </div>
+    {{/each}}
+</div>
