@@ -110,8 +110,6 @@ router.post('/login', async (req, res, next) => {
         if ( foundDev ) {
             const checkPassword = await bcrypt.compare(password, foundDev.password);
 
-            console.log(checkPassword)
-
             if ( checkPassword === false ) {
 
                 res.status(401).render('auth/login-form.hbs', {
@@ -119,6 +117,12 @@ router.post('/login', async (req, res, next) => {
                 })
                 return
             };
+
+            req.session.User = foundDev;
+            req.session.save(() => {
+                //main de dev
+                res.redirect('/')
+            })
 
         } else if ( foundCompany ) {
             const checkPassword = await bcrypt.compare(password, foundCompany.password);
@@ -129,9 +133,13 @@ router.post('/login', async (req, res, next) => {
                 })
                 return
             };
-        };
 
-        res.redirect('/')
+            req.session.User = foundCompany;
+            req.session.save(() => {
+                //main de company
+                res.redirect('/')
+            })
+        };
 
     } catch (error) {
         
