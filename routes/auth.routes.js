@@ -16,14 +16,16 @@ router.post('/signup', async (req, res, next) => {
     const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm;
 
     // Validations
-    if( email === "" || password === "" || passwordCheck === "" || role === undefined) {
+    if ( email === "" || password === "" || passwordCheck === "" || role === undefined) {
+
         res.status(401).render('auth/signup-form.hbs', {
             errorMsg: "All inputs should be completed"
         })
         return
     };
 
-    if( password !== passwordCheck) {
+    if ( password !== passwordCheck) {
+
         res.status(401).render('auth/signup-form.hbs', {
             errorMsg: "Password should be equal"
         })
@@ -31,6 +33,7 @@ router.post('/signup', async (req, res, next) => {
     };
 
     // if ( passwordRegex.test(password) === false) {
+
     //     res.status(401).render('auth/signup-form.hbs', {
     //         errorMsg: "Password should be strongest"
     //     })
@@ -41,10 +44,9 @@ router.post('/signup', async (req, res, next) => {
         
         const foundDev = await Dev.findOne({email: email});
         const foundCompany = await Company.findOne({email: email});
-        console.log(foundDev)
-        console.log(foundCompany)
 
         if ( foundDev !== null || foundCompany !== null) {
+
             res.status(401).render('auth/signup-form.hbs', {
                 errorMsg: "Email registered!, try again!"
             })
@@ -56,12 +58,12 @@ router.post('/signup', async (req, res, next) => {
         const hashPassword = await bcrypt.hash(password, salt);
 
         // Create User
-        if( role === 'dev') {
+        if ( role === 'dev') {
             await Dev.create({
                 email,
                 password: hashPassword
             })
-        } else if( role === 'company') {
+        } else {
             await Company.create({
                 email,
                 password: hashPassword
@@ -69,16 +71,72 @@ router.post('/signup', async (req, res, next) => {
         };
 
         // Redirect Login
-        res.redirect('/auth/login')
+        res.redirect('/auth/login');
 
     } catch (error) {
 
-        next(error)
-    }
+        next(error);
+    };
 });
 
 router.get('/login', (req, res, next) => {
-    res.render('auth/login-form.hbs')
+    res.render('auth/login-form.hbs');
+});
+
+router.post('/login', async (req, res, next) => {
+
+    const { email, password } = req.body;
+
+    if ( email === "" || password === "" ) {
+
+        res.status(401).render('auth/login-form.hbs', {
+            errorMsg: "All inputs should be completed"
+        })
+        return
+    };
+
+    try {
+        
+        const foundDev = await Dev.findOne({email: email});
+        const foundCompany = await Company.findOne({email: email});
+
+        if ( foundDev === null && foundCompany === null) {
+            res.status(401).render('auth/login-form.hbs', {
+                errorMsg: "Email not registered!, try again!"
+            })
+            return
+        };
+
+        if ( foundDev ) {
+            const checkPassword = await bcrypt.compare(password, foundDev.password);
+
+            console.log(checkPassword)
+
+            if ( checkPassword === false ) {
+
+                res.status(401).render('auth/login-form.hbs', {
+                    errorMsg: "Wron password, try again!"
+                })
+                return
+            };
+
+        } else if ( foundCompany ) {
+            const checkPassword = await bcrypt.compare(password, foundCompany.password);
+
+            if ( checkPassword === false ) {
+                res.status(401).render('auth/login-form.hbs', {
+                    errorMsg: "Wron password, try again!"
+                })
+                return
+            };
+        };
+
+        res.redirect('/')
+
+    } catch (error) {
+        
+        next(error)
+    }  
 })
 
 module.exports = router;
