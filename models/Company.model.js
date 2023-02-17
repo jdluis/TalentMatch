@@ -32,15 +32,15 @@ const CompanySchema = new Schema(
         type: String,
         trim: true
     },
-    Linkedin: {
+    linkedin: {
         type: String,
         trim: true
     },
-    Facebook: {
+    facebook: {
         type: String,
         trim: true
     },
-    Twitter: {
+    twitter: {
         type: String,
         trim: true
     },
