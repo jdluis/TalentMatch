@@ -61,7 +61,8 @@ router.post('/signup', async (req, res, next) => {
         if ( role === 'dev') {
             await Dev.create({
                 email,
-                password: hashPassword
+                password: hashPassword,
+                name: email
             })
         } else {
             await Company.create({
@@ -122,7 +123,11 @@ router.post('/login', async (req, res, next) => {
             req.session.User = foundDev;
             req.session.save(() => {
                 //main de dev
-                res.redirect('/dev')
+                if (foundDev.name === foundDev.email){
+                    res.redirect('/dev/profile')
+                } else {
+                    res.redirect('/dev')
+                }
             })
 
         } else if ( foundCompany ) {
@@ -138,7 +143,11 @@ router.post('/login', async (req, res, next) => {
             req.session.User = foundCompany;
             req.session.save(() => {
                 //main de company
-                res.redirect('/company')
+                if (foundCompany.companyName === foundCompany.email) {
+                    res.redirect('/company/profile')
+                } else {
+                    res.redirect('/company')
+                }
             })
         };
 
