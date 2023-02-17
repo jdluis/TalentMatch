@@ -2,4 +2,8 @@
 
     <h1>MAIN</h1>
     
+    {{#each allCompanies}}
+        <a href="/dev/{{this._id}}/details">{{this.companyName}}</a>
+    {{/each}}
+
 </div>

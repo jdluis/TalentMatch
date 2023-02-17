@@ -1,5 +1,39 @@
 <div>
-
-    <h1>Dev Profile</h1>
+    <h1>{{user.name}} Profile</h1>
+    <div>
+        <p><span>Name: </span>{{user.name}}</p>
+        <p><span>Second Name: </span>{{user.secondName}}</p>
+        <p><span>email: </span>{{user.email}}</p>
+        <p><span>Telephone: </span>{{user.telephone}}</p>
+        <p><span>Location: </span>{{user.location}}</p>
+        <p><span>Experience: </span>{{user.experience}}</p>
+        <p><span>Description: </span>{{user.description}}</p>
+        <p><span>Tech Skills: </span></p>
+            <ul>
+                {{#each user.techSkills}}
+                    <li>{{this}}</li>
+                {{/each}}
+            </ul>
+        <p><span>SoftSkills: </span></p>
+            <ul>
+                {{#each user.name}}
+                    <li>{{this}}</li>
+                {{/each}}
+            </ul>
+        <a href="{{user.resume}}">Resume</a>
+        <a href="{{user.linkedin}}">Linkedin</a>
+        <a href="{{user.facebook}}">Facebook</a>
+        <a href="{{user.twitter}}">Twitter</a>
+        <p><span>Favourite Companys: </span></p>
+            <ul>
+                {{#each user.favouritesCompanys}}
+                    <a href="/dev/{{this._id}}/details">{{this.name}}</a>
+                {{/each}}
+            </ul>
+        <p><span>Is currently working: </span>{{user.isWorking}}</p>  
+    </div>
+    <div>
+        <a href="/dev/profile/edit"><button>Edit Profile</button></a>
+    </div>
     
 </div>

@@ -2,4 +2,8 @@
 
     <h1>Company Details</h1>
     
+    {{#each company}}
+        <h4>{{this.companyName}}</h4>
+        <p>{{this.email}}</p>
+    {{/each}}
 </div>

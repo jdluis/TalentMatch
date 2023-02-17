@@ -21,15 +21,20 @@ router.post('/', async (req, res, next) => {
     
     try {
         
+
+
     } catch (error) {
         next(error)
-    }    
+    }
 });
 
 router.get('/:companyId/details', async (req, res, next) => {
-    
+
     try {
-        
+        const company = await Company.findById(req.params.companyId)
+        res.render('dev/companyDetails.hbs', {
+            company
+        })
     } catch (error) {
         next(error)
     }
@@ -47,7 +52,10 @@ router.post('/:companyId/details', async (req, res, next) => {
 router.get('/profile', async (req, res, next) => {
     
     try {
-        
+        const user = await Dev.findById(req.session.User._id)
+        res.render('dev/profile.hbs',{
+            user
+        })
     } catch (error) {
         next(error)
     }
@@ -56,7 +64,10 @@ router.get('/profile', async (req, res, next) => {
 router.get('/profile/edit', async (req, res, next) => {
     
     try {
-        
+        const user = await Dev.findById(req.session.User._id)
+        res.render('dev/edit.hbs',{
+            user
+        })
     } catch (error) {
         next(error)
     }    
