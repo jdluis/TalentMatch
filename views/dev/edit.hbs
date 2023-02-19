@@ -3,34 +3,88 @@
     <h1>{{user.name}} Edit Profile</h1>
 
     <div>
-        <form action="/dev/profile" method="post">
-            <label for="Name">Name: </label>
-            <input type="text" name="name" id="name" value="{{user.name}}">
-            <br>
-            <label for="SecondName">Second Name: </label>
-            <input type="text" name="SecondName" id="SecondName" value="{{user.secondName}}">
-            <br>
-            <label for="email">Email: </label>
-            <input type="text" name="email" id="email" value="{{user.email}}">
-            <br>
-            <label for="telephone">Telephone: </label>
-            <input type="Number" name="telephone" id="telephone" value="{{user.telephone}}">
-            <br>
-            <label for="location">Location: </label>
-            <input type="text" name="location" id="location" value="{{user.location}}">
-            <br>
-            <label for="experience">Experience: </label>
-            <textarea name="experience" id="experience" cols="30" rows="10">{{user.experience}}</textarea>
-            <br>
-            <label for="description">Description: </label>
-            <textarea name="description" id="description" cols="30" rows="10">{{user.description}}</textarea>
-            <br>
-
-
-
-
+        <form action="/dev/profile/edit" method="post">
+            <div>
+                <label for="Name">Name: </label>
+                <input type="text" name="name" id="name" value="{{user.name}}">
             
-        
+            </div>
+            <div>
+                <label for="secondName">Second Name: </label>
+                <input type="text" name="secondName" id="SecondName" value="{{user.secondName}}">
+            </div>
+            <div>
+                <label for="email">Email: </label>
+                <input type="text" name="email" id="email" value="{{user.email}}">
+            </div>
+            <div>
+                <label for="telephone">Telephone: </label>
+                <input type="Number" name="telephone" id="telephone" value="{{user.telephone}}">
+            </div>
+            <div>
+                <label for="location">Location: </label>
+                <input type="text" name="location" id="location" value="{{user.location}}">
+            </div>
+            <div>
+                <label for="experience">Experience: </label>
+                <textarea name="experience" id="experience" cols="30" rows="10">{{user.experience}}</textarea>
+            </div>
+            <div>
+                <label for="description">Description: </label>
+                <textarea name="description" id="description" cols="30" rows="10">{{user.description}}</textarea>
+            </div>
+            <div>
+                <label for="techSkills">Tech Skills: </label>
+                {{#each selectedTechSkills}}
+                    <input type="checkbox" name="techSkills" id="{{this}}" value="{{this}}" checked>
+                    <label for="{{this}}">{{this}}</label>
+                {{/each}}
+                {{#each deselectedTechSkills}}
+                    <input type="checkbox" name="techSkills" id="{{this}}" value="{{this}}">
+                    <label for="{{this}}">{{this}}</label>
+                {{/each}}
+            </div>
+            <div>
+                <label for="softSkills">SoftSkills: </label>
+                {{#each user.softSkills}}
+                    <br>
+                    <input type="checkbox" name="softSkillsChecked" value="{{this}}" checked>
+                    <label for="softSkills">{{this}}</label>
+                {{/each}}
+                <br>
+                <input type="text" name="softSkills" id="softSkills" placeholder="separe with ,">
+            </div>
+            <div>
+                <label for="resume">Resume: </label>
+                <input type="text" name="resume" id="resume" value="{{user.resume}}">
+            </div>
+            <div>
+                <label for="linkedin">Linkedin: </label>
+                <input type="text" name="linkedin" id="linkedin" value="{{user.linkedin}}">
+            </div>
+            <div>
+                <label for="facebook">Facebook: </label>
+                <input type="text" name="facebook" id="facebook" value="{{user.facebook}}">
+            </div>
+            <div>
+                <label for="twitter">twitter: </label>
+                <input type="text" name="twitter" id="twitter" value="{{user.twitter}}">
+            </div>
+            <div>
+                <label for="isWorking">Actually Working: </label>
+                <br>
+                <input type="checkbox" name="isWorking" id="Yes" value="true">
+                <label for="Yes">Yes</label>
+                <input type="checkbox" name="isWorking" id="No" value="false">
+                <label for="No">No</label>
+            </div>
+            <button>Update Profile</button>
+        </form>
+
+        <a href="/dev/profile"><button>Go Back</button></a>
+
+        <form action="/dev/profile/delete" method="get">
+            <button>Delete Account</button>
         </form>
 
 
@@ -38,31 +92,24 @@
         
         
         
-        <p><span>Tech Skills: </span></p>
-            <ul>
-                {{#each user.techSkills}}
-                    <li>{{this}}</li>
-                {{/each}}
-            </ul>
-        <p><span>SoftSkills: </span></p>
-            <ul>
-                {{#each user.name}}
-                    <li>{{this}}</li>
-                {{/each}}
-            </ul>
-        <a href="{{user.resume}}">Resume</a>
-        <a href="{{user.linkedin}}">Linkedin</a>
-        <a href="{{user.facebook}}">Facebook</a>
-        <a href="{{user.twitter}}">Twitter</a>
-        <p><span>Favourite Companys: </span></p>
-            <ul>
-                {{#each user.favouritesCompanys}}
-                    <a href="/dev/{{this._id}}/details">{{this.name}}</a>
-                {{/each}}
-            </ul>
-        <p><span>Is currently working: </span>{{user.isWorking}}</p>
-        
     </div>
 
     
 </div>
+
+<script>
+    const isWorkingYes = document.getElementById("Yes");
+    const isWorkingNo = document.getElementById("No");
+
+    isWorkingYes.addEventListener("change", function() {
+    if (isWorkingYes.checked) {
+        isWorkingNo.checked = false;
+    }
+    });
+
+    isWorkingNo.addEventListener("change", function() {
+    if (isWorkingNo.checked) {
+        isWorkingYes.checked = false;
+    }
+    });
+</script>

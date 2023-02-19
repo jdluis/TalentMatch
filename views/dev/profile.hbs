@@ -16,7 +16,7 @@
             </ul>
         <p><span>SoftSkills: </span></p>
             <ul>
-                {{#each user.name}}
+                {{#each user.softSkills}}
                     <li>{{this}}</li>
                 {{/each}}
             </ul>
@@ -27,10 +27,10 @@
         <p><span>Favourite Companys: </span></p>
             <ul>
                 {{#each user.favouritesCompanys}}
-                    <a href="/dev/{{this._id}}/details">{{this.name}}</a>
+                    <a href="/dev/{{this._id}}/details">{{this.companyName}}</a>
                 {{/each}}
             </ul>
-        <p><span>Is currently working: </span>{{user.isWorking}}</p>  
+        <p><span>Is currently working: </span>{{#if user.isWorking}}Yes{{else}}No{{/if}}</p>  
     </div>
     <div>
         <a href="/dev/profile/edit"><button>Edit Profile</button></a>

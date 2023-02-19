@@ -2,8 +2,35 @@
 
     <h1>Company Details</h1>
     
-    {{#each company}}
-        <h4>{{this.companyName}}</h4>
-        <p>{{this.email}}</p>
-    {{/each}}
+    <div>
+    <h1>{{company.name}} Profile</h1>
+    <div>
+        <p><span>Name: </span>{{company.companyName}}</p>
+        <p><span>email: </span>{{company.email}}</p>
+        <p><span>Telephone: </span>{{company.telephone}}</p>
+        <p><span>Location: </span>{{company.direction}}</p>
+        <p><span>Description: </span>{{company.description}}</p>
+        <p><span>Direction: </span>{{company.direction}}</p>
+        <p><span>Tech Stack: </span></p>
+        <ul>
+        {{#each company.techStack}}
+            <li>{{this}}</li>
+        {{/each}}
+        </ul>
+        <a href="{{company.website}}">Web Site</a>
+        <a href="{{company.linkedin}}">Linkedin</a>
+        <a href="{{company.facebook}}">Facebook</a>
+        <a href="{{company.twitter}}">Twitter</a>
+    </div>
+    {{#if isFavorite}}
+        <form action="" method="post">
+            <input type="checkbox" value="{{company._id}}" name="delCompany" checked hidden>
+            <button>Delete Fav</button>
+        </form>
+        {{else}}
+            <form action="" method="post">
+            <input type="checkbox" value="{{company._id}}" name="favCompany" checked hidden>
+            <button>Add to Fav</button>
+            </form>
+    {{/if}}
 </div>
