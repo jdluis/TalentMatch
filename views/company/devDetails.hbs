@@ -1,15 +1,57 @@
 <div>
-    <div>
-    <p>Name: {{devDetails.name}}</h2>
-    <p>Last Name: {{devDetails.secondName}}</h2>
-    <p>Email: {{this.devDetails.email}}</p>
-    <p>Tel: {{devDetails.tel}}</p>
-    <p>Location: {{devDetails.location}}</p>
-    <p>Experience: {{devDetails.experience}}</p>
+  <h1>{{devDetails.name}} Profile</h1>
+  <div>
+    <p><span>Name: </span>{{devDetails.name}}</p>
+    <p><span>Second Name: </span>{{devDetails.secondName}}</p>
+    <p><span>email: </span>{{devDetails.email}}</p>
+    <p><span>Telephone: </span>{{devDetails.telephone}}</p>
+    <p><span>Location: </span>{{devDetails.location}}</p>
+    <p><span>Experience: </span>{{devDetails.experience}}</p>
+    <p><span>Description: </span>{{devDetails.description}}</p>
+    <p><span>Tech Skills: </span></p>
+    <ul>
+      {{#each devDetails.techSkills}}
+        <li>{{this}}</li>
+      {{/each}}
+    </ul>
+    <p><span>SoftSkills: </span></p>
+    <ul>
+      {{#each devDetails.softSkills}}
+        <li>{{this}}</li>
+      {{/each}}
+    </ul>
+    <a href="{{devDetails.resume}}">Resume</a>
+    <a href="{{devDetails.linkedin}}">Linkedin</a>
+    <a href="{{devDetails.facebook}}">Facebook</a>
+    <a href="{{devDetails.twitter}}">Twitter</a>
+    <p><span>Favourite Companys: </span></p>
+    <p><span>Is currently working: </span>{{#if
+        devDetails.isWorking
+      }}Yes{{else}}No{{/if}}
+    </p>
 
-    <form action="" method="post">
-        <input type="radio" value="{{this.devDetails._id}}" name="markDev">
+    {{#if isFavorite}}
+      <form method="post">
+        <input
+          type="checkbox"
+          value="{{devDetails._id}}"
+          name="delDev"
+          checked
+          hidden
+        />
+        <button>Delete Fav</button>
+      </form>
+    {{else}}
+      <form method="post">
+        <input
+          type="checkbox"
+          value="{{devDetails._id}}"
+          name="favDev"
+          checked
+          hidden
+        />
         <button>Add to Fav</button>
-    </form>
-    </div>
+      </form>
+    {{/if}}
+  </div>
 </div>

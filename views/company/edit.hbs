@@ -47,35 +47,21 @@
       <input type="text" value="{{company.website}}" name="website" />
     </div>
 
+
     <div>
-      <label for="techStack">Tech Skills: </label>
-      {{#each enumValues}}
-     {{!--  {{#if }} --}}
-        <br>
-        <input type="checkbox" name="techStack" id="{{this}}" value="{{this}}">
-        <label for="{{this}}">{{this}}</label>  
-{{!--         {{#else}}
-        <br>
-        <input checked type="checkbox" name="techStack" id="{{this}}" value="{{this}}">
-        <label for="{{this}}">{{this}}</label>   --}}
-      {{/each}}
+        <label for="techStack">Tech Skills: </label>
+        {{#each selectedTechStack}}
+            <input type="checkbox" name="techStack" id="{{this}}" value="{{this}}" checked>
+            <label for="{{this}}">{{this}}</label>
+        {{/each}}
+        {{#each deselectedTechStack}}
+            <input type="checkbox" name="techStack" id="{{this}}" value="{{this}}">
+            <label for="{{this}}">{{this}}</label>
+        {{/each}}
     </div>
 
-    {{!--  <div>
-      <label for="techStack">Tech Stack</label>
-      <input type="text" placeholder="Insert New" name="techStack" />
-      <h5>Tech Stack Used:</h5>
-      <p>
-      {{#each company.techStack}}
-        <span>{{this}}</span>,
-       {{/each}}
-       </p>
-    </div> --}}
-
+    <a href="/company/profile"><button>Go Back</button></a>
     <button>Update</button>
-    <div>
-      {{errorMsg}}
-    </div>
   </form>
     <button><a href="/company/profile/delete">Delete</a></button>
 </div>

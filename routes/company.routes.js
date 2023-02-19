@@ -6,25 +6,39 @@ const Dev = require("../models/Dev.model.js");
 
 router.get("/", async (req, res, next) => {
   try {
-    const devList = await Dev.find();
-    res.render("company/main.hbs", {
-      devList,
-    });
-  } catch (err) {
-    next(err);
-  }
-});
-
-router.post("/", async (req, res, next) => {
-  try {
-    const { search, markedDevs, experience } = req.body;
-    console.log(req.body);
+    const { search, favDevs } = req.query;
+    
     // Filter
-    if (search || markedDevs || experience) {
-      const devList = await Dev.find();
-      res.render("company/main.hbs", {
-        devList,
-      });
+    const company = await Company.findById(req.session.User._id)
+    if (search || favDevs) {
+      if (favDevs === "true") {
+        const devList = await Dev.find({
+          '_id': {$in: company.markedDevs},
+          $or: [
+            { name: new RegExp(search, "i") },
+            { description: new RegExp(search, "i") },
+            { secondName: new RegExp(search, "i") },
+            { techSkills: new RegExp(search, "i") },
+          ],
+        });
+        res.render("company/main.hbs", {
+          devList,
+        });
+      }
+
+      if (search && favDevs !== "true") {
+        const devList = await Dev.find({
+          $or: [
+            { name: new RegExp(search, "i") },
+            { description: new RegExp(search, "i") },
+            { secondName: new RegExp(search, "i") },
+            { techSkills: new RegExp(search, "i") },
+          ],
+        });
+        res.render("company/main.hbs", {
+          devList,
+        });
+      }
     } else {
       const devList = await Dev.find();
       res.render("company/main.hbs", {
@@ -39,8 +53,20 @@ router.post("/", async (req, res, next) => {
 router.get("/:devId/details", async (req, res, next) => {
   try {
     const devDetails = await Dev.findById(req.params.devId);
+    const userCompany = await Company.findById(req.session.User._id).populate(
+      "markedDevs"
+    );
+
+    let isFavorite = false;
+    userCompany.markedDevs.forEach((eachFav) => {
+      if (eachFav.name === devDetails.name) {
+        isFavorite = true;
+      }
+    });
+
     res.render("company/devDetails.hbs", {
       devDetails,
+      isFavorite,
     });
   } catch (err) {
     next(err);
@@ -49,11 +75,19 @@ router.get("/:devId/details", async (req, res, next) => {
 
 router.post("/:devId/details", async (req, res, next) => {
   try {
-    const { markDev } = req.body;
+    const { favDev, delDev } = req.body;
     const { devId } = req.params;
-    await Company.findByIdAndUpdate(req.session.User._id, {
-      $push: { markedDevs: markDev },
-    });
+
+    if (favDev) {
+      await Company.findByIdAndUpdate(req.session.User._id, {
+        $push: { markedDevs: favDev },
+      });
+    } else {
+      await Company.findByIdAndUpdate(req.session.User._id, {
+        $pull: { markedDevs: delDev },
+      });
+    }
+
     res.redirect(`/company/${devId}/details`);
   } catch (err) {
     next(err);
@@ -78,9 +112,21 @@ router.get("/profile/edit", async (req, res, next) => {
     const company = await Company.findById(req.session.User._id);
     const enumValues = company.schema.path("techStack").caster.enumValues;
 
+    const selectedTechStack = [];
+    const deselectedTechStack = [];
+
+    enumValues.forEach((eachValue) => {
+      if (company.techStack.includes(eachValue)) {
+        selectedTechStack.push(eachValue);
+      } else {
+        deselectedTechStack.push(eachValue);
+      }
+    });
+
     res.render("company/edit.hbs", {
       company,
-      enumValues,
+      selectedTechStack,
+      deselectedTechStack,
     });
   } catch (err) {
     next(err);
@@ -124,7 +170,7 @@ router.get("/profile/delete", async (req, res, next) => {
   try {
     const company = await Company.findById(req.session.User._id);
     res.render("company/delete.hbs", {
-      company
+      company,
     });
   } catch (err) {
     next(err);
