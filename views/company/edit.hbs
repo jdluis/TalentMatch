@@ -1,7 +1,7 @@
 <div>
   <h1>Edit Company</h1>
 <div>
-  <form action="/company/edit" method="post">
+  <form action="/company/profile/edit" method="post">
     <div>
       <label for="companyName">Company Name</label>
       <input type="companyName" value="{{company.companyName}}" name="companyName" />
@@ -47,7 +47,21 @@
       <input type="text" value="{{company.website}}" name="website" />
     </div>
 
-     <div>
+    <div>
+      <label for="techStack">Tech Skills: </label>
+      {{#each enumValues}}
+     {{!--  {{#if }} --}}
+        <br>
+        <input type="checkbox" name="techStack" id="{{this}}" value="{{this}}">
+        <label for="{{this}}">{{this}}</label>  
+{{!--         {{#else}}
+        <br>
+        <input checked type="checkbox" name="techStack" id="{{this}}" value="{{this}}">
+        <label for="{{this}}">{{this}}</label>   --}}
+      {{/each}}
+    </div>
+
+    {{!--  <div>
       <label for="techStack">Tech Stack</label>
       <input type="text" placeholder="Insert New" name="techStack" />
       <h5>Tech Stack Used:</h5>
@@ -56,11 +70,12 @@
         <span>{{this}}</span>,
        {{/each}}
        </p>
-    </div>
+    </div> --}}
 
     <button>Update</button>
     <div>
       {{errorMsg}}
     </div>
   </form>
+    <button><a href="/company/profile/delete">Delete</a></button>
 </div>

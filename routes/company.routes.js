@@ -73,18 +73,21 @@ router.get("/profile", async (req, res, next) => {
   }
 });
 
-router.get("/edit", async (req, res, next) => {
+router.get("/profile/edit", async (req, res, next) => {
   try {
     const company = await Company.findById(req.session.User._id);
+    const enumValues = company.schema.path("techStack").caster.enumValues;
+
     res.render("company/edit.hbs", {
       company,
+      enumValues,
     });
   } catch (err) {
     next(err);
   }
 });
 
-router.post("/edit", async (req, res, next) => {
+router.post("/profile/edit", async (req, res, next) => {
   try {
     const {
       companyName,
@@ -99,7 +102,7 @@ router.post("/edit", async (req, res, next) => {
       techStack,
     } = req.body;
 
-    const company = await Company.findByIdAndUpdate(req.session.User._id,{
+    const company = await Company.findByIdAndUpdate(req.session.User._id, {
       companyName,
       email,
       description,
@@ -109,10 +112,29 @@ router.post("/edit", async (req, res, next) => {
       facebook,
       twitter,
       website,
-      $push: { techStack: techStack }
-      
+      techStack,
     });
     res.redirect("/company/profile");
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.get("/profile/delete", async (req, res, next) => {
+  try {
+    const company = await Company.findById(req.session.User._id);
+    res.render("company/delete.hbs", {
+      company
+    });
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.post("/profile/delete", async (req, res, next) => {
+  try {
+    await Company.findByIdAndRemove(req.session.User._id);
+    res.redirect("/");
   } catch (err) {
     next(err);
   }
