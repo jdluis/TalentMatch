@@ -13,15 +13,21 @@
 
       <nav>
          <a href="/">Home</a>
+         {{#if isUserActive}}
+            <a href="/auth/logout">Log out</a>
+         {{else}}
+            <a href="/auth/login">Login</a>
+            <a href="/auth/signup">Sign Up</a>
+         {{/if}}
+         {{#if isUserDev}}
+            <a href="/dev">Main</a>
+            <a href="/dev/profile">My Profile</a>
+         {{/if}}
 
-         <a href="/auth/login">Login</a>
-         <a href="/auth/signup">Sign Up</a>
-
-         <a href="/dev">Main Dev</a>
-         <a href="/dev/profile">My Profile</a>
-
-         <a href="/company">Main Company</a>
-         <a href="/company/profile">My profile</a>
+         {{#if isUserCompany}}
+            <a href="/company">Main</a>
+            <a href="/company/profile">My profile</a>
+         {{/if}}
     </nav>
 
       {{{body}}}

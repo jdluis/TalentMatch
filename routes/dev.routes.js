@@ -5,7 +5,9 @@ const router = express.Router();
 const Company = require('../models/Company.model.js');
 const Dev = require('../models/Dev.model.js');
 
-router.get('/', async (req, res, next) => {
+const { isLogged, isDev } = require('../middlewares/auth.middlewares.js');
+
+router.get('/',  async (req, res, next) => {
     
     try {
         const response = await Company.find()
