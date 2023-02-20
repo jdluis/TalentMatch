@@ -45,10 +45,10 @@ router.get('/:companyId/details', async (req, res, next) => {
 
     try {
         const company = await Company.findById(req.params.companyId)
-        const user = await Dev.findById(req.session.User._id).populate('favouritesCompanys')
+        const user = await Dev.findById(req.session.User._id).populate('favouritesCompanies')
 
         let isFavorite = false;
-        user.favouritesCompanys.forEach(eachFav => {
+        user.favouritesCompanies.forEach(eachFav => {
 
             if (eachFav.companyName === company.companyName ) {
                 isFavorite = true
@@ -73,12 +73,12 @@ router.post('/:companyId/details', async (req, res, next) => {
         if ( favCompany ) {
 
             await Dev.findByIdAndUpdate(req.session.User._id, {
-                $push: { favouritesCompanys: favCompany },
+                $push: { favouritesCompanies: favCompany },
                 });
         } else {
 
             await Dev.findByIdAndUpdate(req.session.User._id, {
-                $pull: { favouritesCompanys: delCompany },
+                $pull: { favouritesCompanies: delCompany },
                 });
         }
         res.redirect(`/dev/${companyId}/details`);
@@ -90,7 +90,7 @@ router.post('/:companyId/details', async (req, res, next) => {
 router.get('/profile', async (req, res, next) => {
     
     try {
-        const user = await Dev.findById(req.session.User._id).populate('favouritesCompanys')
+        const user = await Dev.findById(req.session.User._id).populate('favouritesCompanies')
         console.log(user)
         res.render('dev/profile.hbs',{
             user

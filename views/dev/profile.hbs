@@ -1,6 +1,9 @@
 <div>
     <h1>{{user.name}} Profile</h1>
     <div>
+        <div>
+            <img src="{{user.img}}" alt="{{user.name}}">
+        </div>
         <p><span>Name: </span>{{user.name}}</p>
         <p><span>Second Name: </span>{{user.secondName}}</p>
         <p><span>email: </span>{{user.email}}</p>
@@ -26,7 +29,7 @@
         <a href="{{user.twitter}}">Twitter</a>
         <p><span>Favourite Companys: </span></p>
             <ul>
-                {{#each user.favouritesCompanys}}
+                {{#each user.favouritesCompanies}}
                     <a href="/dev/{{this._id}}/details">{{this.companyName}}</a>
                 {{/each}}
             </ul>

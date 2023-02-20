@@ -20,6 +20,7 @@ const devSchema = new Schema(
       type: String,
       required: true,
     },
+    img: String,
     telephone: Number,
     location: {
       type: String,
@@ -77,7 +78,7 @@ const devSchema = new Schema(
       type: String,
       trim: true,
     },
-    favouritesCompanys: [
+    favouritesCompanies: [
       {
         type: Schema.Types.ObjectId,
         ref: "Company",
