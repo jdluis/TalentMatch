@@ -20,7 +20,10 @@ const devSchema = new Schema(
       type: String,
       required: true,
     },
-    img: String,
+    img: {
+      type: String,
+      default: "../images/defaultAvatar.png"
+    },
     telephone: Number,
     location: {
       type: String,
