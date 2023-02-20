@@ -27,6 +27,7 @@ const CompanySchema = new Schema(
         type: String,
         trim: true
     },
+    img: String,
     telephone: Number,
     direction: {
         type: String,

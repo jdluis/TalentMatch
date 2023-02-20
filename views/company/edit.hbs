@@ -3,6 +3,10 @@
 <div>
   <form action="/company/profile/edit" method="post">
     <div>
+      <label for="img">Logo Company: </label>
+      <input type="text" name="img" id="img" value="{{company.img}}">
+    </div>
+    <div>
       <label for="companyName">Company Name</label>
       <input type="companyName" value="{{company.companyName}}" name="companyName" />
     </div>

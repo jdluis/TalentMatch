@@ -5,9 +5,12 @@
     <div>
         <form action="/dev/profile/edit" method="post">
             <div>
+                <label for="img">Image: </label>
+                <input type="text" name="img" id="img" value="{{user.img}}">
+            </div>
+            <div>
                 <label for="Name">Name: </label>
                 <input type="text" name="name" id="name" value="{{user.name}}">
-            
             </div>
             <div>
                 <label for="secondName">Second Name: </label>

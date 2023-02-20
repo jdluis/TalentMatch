@@ -1,7 +1,11 @@
 <div>
-    <h3>Are you sure you want to delete your Account?</h3>
-    <form action="/dev/profile/delete" method="post">
-        <button>YES DELETE IT</button>
+  <h4>Are you sure you want to delete these
+    <span>{{user.name}}</span>
+    account?</h4>
+  <div>
+    <form action="/dev/profile/delete"  method="post">
+      <button>Yes</button>
     </form>
-    <a href="/dev/profile/edit"><button>NO I DONT</button></a>
+    <button><a href="/dev/profile/edit">No</a></button>
+  </div>
 </div>
