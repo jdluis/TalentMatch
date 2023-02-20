@@ -58,3 +58,24 @@
     {{/if}}
   </div>
 </div>
+<div>
+    <div>
+        {{#each messages}}
+            
+            {{#if this.transmitter.companyName}}
+              <h4>{{this.transmitter.companyName}} write: </h4>
+              {{else}}
+              <h4>{{this.transmitter.name}} write: </h4>
+            {{/if}}
+
+            <p>{{this.message}}</p>
+        {{/each}}
+    </div>
+    <div>
+        <form action="" method="post">
+            <label for="message">Write your message:</label>
+            <textarea name="message" id="message" cols="30" rows="10"></textarea>
+            <button>Submit</button>
+        </form>
+    </div>
+</div>

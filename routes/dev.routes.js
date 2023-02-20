@@ -5,6 +5,7 @@ const fileUploader = require('../config/cloudinary.config.js');
 
 const Company = require('../models/Company.model.js');
 const Dev = require('../models/Dev.model.js');
+const Message = require('../models/Message.model.js');
 
 const { isLogged, isDev } = require('../middlewares/auth.middlewares.js');
 
@@ -59,6 +60,12 @@ router.get('/:companyId/details', async (req, res, next) => {
     try {
         const company = await Company.findById(req.params.companyId)
         const user = await Dev.findById(req.session.User._id).populate('favouritesCompanies')
+        const messages = await Message.find({
+            $or:[
+                { $and: [{transmitter: user}, {receiver: company}]},
+                { $and: [{transmitter: company}, {receiver: user}]}
+              ]
+            }).populate('transmitter');
 
         let isFavorite = false;
         user.favouritesCompanies.forEach(eachFav => {
@@ -70,7 +77,8 @@ router.get('/:companyId/details', async (req, res, next) => {
         console.log(isFavorite);
         res.render('dev/companyDetails.hbs', {
             company,
-            isFavorite
+            isFavorite,
+            messages
         })
     } catch (error) {
         next(error)
@@ -80,7 +88,7 @@ router.get('/:companyId/details', async (req, res, next) => {
 router.post('/:companyId/details', async (req, res, next) => {
     
     try {
-        const { favCompany, delCompany } = req.body;
+        const { favCompany, delCompany, message } = req.body;
         const { companyId } = req.params;
 
         if ( favCompany ) {
@@ -94,6 +102,16 @@ router.post('/:companyId/details', async (req, res, next) => {
                 $pull: { favouritesCompanies: delCompany },
                 });
         }
+
+        if (message) {
+            await Message.create({
+                message,
+                receiver: companyId,
+                transmitter: req.session.User._id,
+                docmodel: 'Dev'
+            })
+        }
+
         res.redirect(`/dev/${companyId}/details`);
     } catch (error) {
         next(error)

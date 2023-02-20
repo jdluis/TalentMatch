@@ -4,6 +4,7 @@ const fileUploader = require('../config/cloudinary.config.js');
 
 const Company = require("../models/Company.model.js");
 const Dev = require("../models/Dev.model.js");
+const Message = require('../models/Message.model.js');
 
 
 router.get("/", async (req, res, next) => {
@@ -58,6 +59,12 @@ router.get("/:devId/details", async (req, res, next) => {
     const userCompany = await Company.findById(req.session.User._id).populate(
       "markedDevs"
     );
+    const messages = await Message.find({
+        $or:[
+          { $and: [{transmitter: devDetails}, {receiver: userCompany}]},
+          { $and: [{transmitter: userCompany}, {receiver: devDetails}]}
+        ]
+      }).populate('transmitter');
 
     let isFavorite = false;
     userCompany.markedDevs.forEach((eachFav) => {
@@ -69,6 +76,7 @@ router.get("/:devId/details", async (req, res, next) => {
     res.render("company/devDetails.hbs", {
       devDetails,
       isFavorite,
+      messages,
     });
   } catch (err) {
     next(err);
@@ -77,7 +85,7 @@ router.get("/:devId/details", async (req, res, next) => {
 
 router.post("/:devId/details", async (req, res, next) => {
   try {
-    const { favDev, delDev } = req.body;
+    const { favDev, delDev, message } = req.body;
     const { devId } = req.params;
 
     if (favDev) {
@@ -88,6 +96,15 @@ router.post("/:devId/details", async (req, res, next) => {
       await Company.findByIdAndUpdate(req.session.User._id, {
         $pull: { markedDevs: delDev },
       });
+    }
+
+    if (message) {
+        await Message.create({
+            message,
+            receiver: devId,
+            transmitter: req.session.User._id,
+            docmodel: 'Company'
+        })
     }
 
     res.redirect(`/company/${devId}/details`);
