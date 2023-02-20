@@ -148,9 +148,10 @@ router.post("/profile/edit", fileUploader.single('img'), async (req, res, next) 
       twitter,
       website,
       techStack,
+      existingImage
     } = req.body;
 
-    const company = await Company.findByIdAndUpdate(req.session.User._id, {
+    await Company.findByIdAndUpdate(req.session.User._id, {
       companyName,
       email,
       description,
@@ -161,7 +162,8 @@ router.post("/profile/edit", fileUploader.single('img'), async (req, res, next) 
       twitter,
       website,
       techStack,
-      img: req.file.path
+      img: req.file ? req.file.path : existingImage,
+
     });
     res.redirect("/company/profile");
   } catch (err) {

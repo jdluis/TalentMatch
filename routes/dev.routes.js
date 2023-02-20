@@ -158,6 +158,7 @@ router.post('/profile/edit', fileUploader.single('img'), async (req, res, next) 
             facebook,
             twitter,
             isWorking,
+            existingImage
         } = req.body;
 
         let softSkillsArr = []
@@ -175,7 +176,7 @@ router.post('/profile/edit', fileUploader.single('img'), async (req, res, next) 
             softSkillsArr.unshift(softSkillsChecked)
           }
 
-        const user = await Dev.findByIdAndUpdate(req.session.User._id, {
+        await Dev.findByIdAndUpdate(req.session.User._id, {
             name,
             secondName,
             email,
@@ -189,7 +190,7 @@ router.post('/profile/edit', fileUploader.single('img'), async (req, res, next) 
             facebook,
             twitter,
             isWorking,
-            img: req.file.path
+            img: req.file ? req.file.path : existingImage,
         })
         res.redirect('/dev/profile')
     } catch (error) {

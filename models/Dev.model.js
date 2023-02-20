@@ -51,7 +51,7 @@ const devSchema = new Schema(
           "CSS",
           "HTML",
           "NodeJS",
-          "Mongo BD",
+          "MongoDB",
           "Git",
           "Boostrap",
           "PHP",

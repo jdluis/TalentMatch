@@ -6,7 +6,8 @@
         <form action="/dev/profile/edit" method="post" enctype="multipart/form-data">
             <div>
                 <label for="img">Image: </label>
-                <input type="file" name="img" id="img" value="{{user.img}}">
+                <input type="file" name="img" id="img">
+                <input type="text" name="existingImage" hidden value="{{user.img}}">
             </div>
             <div>
                 <label for="Name">Name: </label>

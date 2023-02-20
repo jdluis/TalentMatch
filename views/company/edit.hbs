@@ -4,7 +4,8 @@
   <form action="/company/profile/edit" method="post" enctype="multipart/form-data">
     <div>
       <label for="img">Logo Company: </label>
-      <input type="file" name="img" id="img" value="{{company.img}}">
+      <input type="file" name="img" id="img">
+      <input type="text" name="existingImage" hidden value="{{company.img}}">
     </div>
     <div>
       <label for="companyName">Company Name</label>
