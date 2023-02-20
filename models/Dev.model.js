@@ -22,7 +22,7 @@ const devSchema = new Schema(
     },
     img: {
       type: String,
-      default: "../images/defaultAvatar.png"
+      default: "/images/defaultAvatar.png"
     },
     telephone: Number,
     location: {

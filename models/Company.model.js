@@ -29,7 +29,7 @@ const CompanySchema = new Schema(
     },
     img: {
       type: String,
-      default: "../images/logoTalentMatch.png"
+      default: "/images/logoTalentMatch.png"
     },
     telephone: Number,
     direction: {
