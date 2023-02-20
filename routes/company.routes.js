@@ -185,7 +185,9 @@ router.get("/profile/delete", async (req, res, next) => {
 router.post("/profile/delete", async (req, res, next) => {
   try {
     await Company.findByIdAndRemove(req.session.User._id);
-    res.redirect("/");
+    req.session.destroy( () => {
+        res.redirect('/')
+    })
   } catch (err) {
     next(err);
   }
