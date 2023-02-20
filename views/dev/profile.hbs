@@ -17,7 +17,7 @@
                     <li>{{this}}</li>
                 {{/each}}
             </ul>
-        <p><span>SoftSkills: </span></p>
+        <p><span>Soft Skills: </span></p>
             <ul>
                 {{#each user.softSkills}}
                     <li>{{this}}</li>
@@ -27,7 +27,7 @@
         <a href="{{user.linkedin}}">Linkedin</a>
         <a href="{{user.facebook}}">Facebook</a>
         <a href="{{user.twitter}}">Twitter</a>
-        <p><span>Favourite Companys: </span></p>
+        <p><span>Favourite Companies: </span></p>
             <ul>
                 {{#each user.favouritesCompanies}}
                     <a href="/dev/{{this._id}}/details">{{this.companyName}}</a>

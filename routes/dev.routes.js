@@ -183,8 +183,11 @@ router.post('/profile/edit', async (req, res, next) => {
     }    
 });
 
-router.get('/profile/delete', (req, res, next) => {
-    res.render('dev/delete.hbs')
+router.get('/profile/delete', async (req, res, next) => {
+    const user = await Dev.findById(req.session.User._id).populate('favouritesCompanies')
+    res.render('dev/delete.hbs', {
+        user
+    })
 });
 
 router.post('/profile/delete', async (req, res, next) => {
