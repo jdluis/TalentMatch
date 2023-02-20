@@ -82,6 +82,7 @@ const CompanySchema = new Schema(
           "Java",
           "Python",
           "Wordpress",
+          "Express"
         ],
         trim: true
       },

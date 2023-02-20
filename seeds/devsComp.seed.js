@@ -16,7 +16,7 @@ const insertData = async () => {
         console.log('Data added!')
         mongoose.connection.close()
     } catch (error) {
-        console.log('Ops! There is a problem!')
+        console.log('Ops! There is a problem!', error)
     }
 }
 
