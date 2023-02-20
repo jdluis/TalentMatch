@@ -1,0 +1,314 @@
+[
+    {
+        "companyName": "Acme Inc",
+        "email": "info@acme.com",
+        "password": "pa$$w0rd",
+        "role": "company",
+        "description": "We provide top quality products for all your needs",
+        "img": "../images/logoTalentMatch.png",
+        "telephone": 476655123,
+        "direction": "123 Main St, Anytown USA",
+        "linkedin": "https://www.linkedin.com/company/acme-inc/",
+        "facebook": "https://www.facebook.com/acme.inc",
+        "twitter": "https://twitter.com/acmeinc",
+        "website": "https://www.acme.com",
+        "markedDevs": [],
+        "techStack": [
+            "JS",
+            "React",
+            "NodeJS"
+        ]
+    },
+    {
+        "companyName": "Globex Corporation",
+        "email": "support@globex.com",
+        "password": "myP@ssword",
+        "role": "company",
+        "description": "We provide global solutions for your business",
+        "img": "../images/logoTalentMatch.png",
+        "telephone": 5555678,
+        "direction": "456 High St, Anytown USA",
+        "linkedin": "https://www.linkedin.com/company/globex-corporation/",
+        "facebook": "https://www.facebook.com/globexcorp",
+        "twitter": "https://twitter.com/globexcorp",
+        "website": "https://www.globex.com",
+        "markedDevs": [],
+        "techStack": [
+            "JS",
+            "React",
+            "Angular",
+            "NodeJS"
+        ]
+    },
+    {
+        "companyName": "Initech",
+        "email": "info@initech.com",
+        "password": "secretP@ss",
+        "role": "company",
+        "description": "We specialize in corporate technology solutions",
+        "img": "../images/logoTalentMatch.png",
+        "telephone": 5559012,
+        "direction": "789 Broadway, Anytown USA",
+        "linkedin": "https://www.linkedin.com/company/initech/",
+        "facebook": "https://www.facebook.com/initech",
+        "twitter": "https://twitter.com/initechcorp",
+        "website": "https://www.initech.com",
+        "markedDevs": [],
+        "techStack": [
+            "JS",
+            "React",
+            "Angular",
+            "NodeJS",
+            "Mongo DB"
+        ]
+    },
+    {
+        "companyName": "Wayne Enterprises",
+        "email": "bruce@wayneenterprises.com",
+        "password": "I'mBatman",
+        "role": "company",
+        "description": "Innovation for a better tomorrow",
+        "img": "../images/logoTalentMatch.png",
+        "telephone": 5553456,
+        "direction": "123 Batcave Lane, Anytown USA",
+        "linkedin": "https://www.linkedin.com/company/wayne-enterprises/",
+        "facebook": "https://www.facebook.com/wayneenterprises",
+        "twitter": "https://twitter.com/wayneenterprises",
+        "website": "https://www.wayneenterprises.com",
+        "markedDevs": [],
+        "techStack": [
+            "JS",
+            "React",
+            "NodeJS",
+            "Mongo DB",
+            "Redux",
+            "Java",
+            "Python"
+        ]
+    },
+    {
+        "companyName": "ABC Company",
+        "email": "abc5734uth@example.com",
+        "password": "abc123",
+        "role": "company",
+        "description": "We are a tech startup.",
+        "img": "../images/logoTalentMatch.png",
+        "telephone": 5551234,
+        "direction": "123 Main St.",
+        "linkedin": "https://www.linkedin.com/company/abc",
+        "facebook": "https://www.facebook.com/ABC",
+        "twitter": "@ABC",
+        "website": "https://www.abc.com",
+        "markedDevs": [],
+        "techStack": [
+            "JS",
+            "React",
+            "NodeJS"
+        ]
+    },
+    {
+        "companyName": "XYZ Enterprises",
+        "email": "xyz42336345yrteg@example.com",
+        "password": "xyz123",
+        "role": "company",
+        "description": "We provide business solutions.",
+        "img": "../images/logoTalentMatch.png",
+        "telephone": 5555678,
+        "direction": "456 Maple Ave.",
+        "linkedin": "https://www.linkedin.com/company/xyz",
+        "facebook": "https://www.facebook.com/XYZ",
+        "twitter": "@XYZ",
+        "website": "https://www.xyz.com",
+        "markedDevs": [],
+        "techStack": [
+            "Angular",
+            "NodeJS",
+            "Mongo DB"
+        ]
+    },
+    {
+        "companyName": "123 Corp.",
+        "email": "123563457yreg@example.com",
+        "password": "123abc",
+        "role": "company",
+        "description": "We make software for banks.",
+        "img": "../images/logoTalentMatch.png",
+        "telephone": 5559012,
+        "direction": "789 Oak St.",
+        "linkedin": "https://www.linkedin.com/company/123",
+        "facebook": "https://www.facebook.com/123",
+        "twitter": "@123",
+        "website": "https://www.123.com",
+        "markedDevs": [],
+        "techStack": [
+            "Java",
+            "Mongo DB",
+            "Git"
+        ]
+    },
+    {
+        "companyName": "ABCDEF Corp.",
+        "email": "abcdef57673th@example.com",
+        "password": "abcdef123",
+        "role": "company",
+        "description": "We do data analysis.",
+        "img": "../images/logoTalentMatch.png",
+        "telephone": 5553456,
+        "direction": "321 Elm St.",
+        "linkedin": "https://www.linkedin.com/company/abcdef",
+        "facebook": "https://www.facebook.com/ABCDEF",
+        "twitter": "@ABCDEF",
+        "website": "https://www.abcdef.com",
+        "markedDevs": [],
+        "techStack": [
+            "Python",
+            "React Native",
+            "Redux"
+        ]
+    },
+    {
+        "companyName": "MNO Corp.",
+        "email": "mno56547347g@example.com",
+        "password": "mno123",
+        "role": "company",
+        "description": "We make mobile apps.",
+        "img": "../images/logoTalentMatch.png",
+        "telephone": 5557890,
+        "direction": "654 Cherry St.",
+        "linkedin": "https://www.linkedin.com/company/mno",
+        "facebook": "https://www.facebook.com/MNO",
+        "twitter": "@MNO",
+        "website": "https://www.mno.com",
+        "markedDevs": [],
+        "techStack": [
+            "React Native",
+            "Laravel",
+            "PHP"
+        ]
+    },
+    {
+        "companyName": "CBD Company",
+        "email": "abc54676457543y@example.com",
+        "password": "abcpassword",
+        "role": "company",
+        "description": "We are a software development company",
+        "img": "../images/logoTalentMatch.png",
+        "telephone": 1234567890,
+        "direction": "123 Main Street",
+        "linkedin": "https://www.linkedin.com/company/abc-company",
+        "facebook": "https://www.facebook.com/abc-company",
+        "twitter": "https://twitter.com/abc-company",
+        "website": "https://www.abc-company.com",
+        "markedDevs": [],
+        "techStack": [
+            "JS",
+            "React",
+            "NodeJS"
+        ]
+    },
+    {
+        "companyName": "XYZ Inc",
+        "email": "xyz547458458457@example.com",
+        "password": "xyzpassword",
+        "role": "company",
+        "description": "We provide cloud-based solutions for businesses",
+        "img": "../images/logoTalentMatch.png",
+        "telephone": 9876543210,
+        "direction": "456 Park Avenue",
+        "linkedin": "https://www.linkedin.com/company/xyz-inc",
+        "facebook": "https://www.facebook.com/xyz-inc",
+        "twitter": "https://twitter.com/xyz-inc",
+        "website": "https://www.xyz-inc.com",
+        "markedDevs": [],
+        "techStack": [
+            "JS",
+            "TS",
+            "React",
+            "Angular",
+            "NodeJS",
+            "Git",
+            "Laravel"
+        ]
+    },
+    {
+        "companyName": "PQR Corporation",
+        "email": "pqr@example.com",
+        "password": "pqrpassword",
+        "role": "company",
+        "description": "We specialize in enterprise software development",
+        "img": "../images/logoTalentMatch.png",
+        "telephone": 1112223333,
+        "direction": "789 Broadway",
+        "linkedin": "https://www.linkedin.com/company/pqr-corporation",
+        "facebook": "https://www.facebook.com/pqr-corporation",
+        "twitter": "https://twitter.com/pqr-corporation",
+        "website": "https://www.pqr-corporation.com",
+        "markedDevs": [],
+        "techStack": [
+            "JS",
+            "TS",
+            "NodeJS",
+            "Git",
+            "Laravel"
+        ]
+    },
+    {
+        "companyName": "Google",
+        "email": "contact@google.com",
+        "password": "password123",
+        "role": "company",
+        "description": "Google LLC is an American multinational technology company that specializes in Internet-related services and products.",
+        "img": "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png",
+        "telephone": 6502530000,
+        "direction": "1600 Amphitheatre Parkway, Mountain View, California, United States",
+        "linkedin": "https://www.linkedin.com/company/google",
+        "facebook": "https://www.facebook.com/Google",
+        "twitter": "https://twitter.com/google",
+        "website": "https://www.google.com/",
+        "markedDevs": [],
+        "techStack": [
+            "JS",
+            "React",
+            "Angular",
+            "NodeJS",
+            "Mongo DB",
+            "Git"
+        ]
+    },
+    {
+        "companyName": "Apple",
+        "email": "contact@apple.com",
+        "password": "password123",
+        "role": "company",
+        "description": "Apple Inc. is an American multinational technology company that designs, develops, and sells consumer electronics, computer software, and online services.",
+        "img": "https://www.apple.com/ac/structured-data/images/knowledge_graph_logo.png?202101222224",
+        "telephone": 14089961010,
+        "direction": "One Apple Park Way, Cupertino, California, United States",
+        "linkedin": "https://www.linkedin.com/company/apple",
+        "facebook": "https://www.facebook.com/Apple",
+        "twitter": "https://twitter.com/Apple",
+        "website": "https://www.apple.com/",
+        "markedDevs": [],
+        "techStack": [
+            "Git"
+        ]
+    },
+    {
+        "companyName": "Microsoft",
+        "email": "contact@microsoft.com",
+        "password": "password123",
+        "role": "company",
+        "description": "Microsoft Corporation is an American multinational technology corporation that develops, licenses, and sells computer software, consumer electronics, and personal computers.",
+        "img": "https://www.microsoft.com/en-us/athome/setup/static/images/microsoft-logo.svg",
+        "telephone": 14258828080,
+        "direction": "One Microsoft Way, Redmond, Washington, United States",
+        "linkedin": "https://www.linkedin.com/company/microsoft",
+        "facebook": "https://www.facebook.com/Microsoft",
+        "twitter": "https://twitter.com/Microsoft",
+        "website": "https://www.microsoft.com/",
+        "markedDevs": [],
+        "techStack": [
+            "Git"
+        ]
+    }
+]
