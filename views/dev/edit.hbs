@@ -3,10 +3,10 @@
     <h1>{{user.name}} Edit Profile</h1>
 
     <div>
-        <form action="/dev/profile/edit" method="post">
+        <form action="/dev/profile/edit" method="post" enctype="multipart/form-data">
             <div>
                 <label for="img">Image: </label>
-                <input type="text" name="img" id="img" value="{{user.img}}">
+                <input type="file" name="img" id="img" value="{{user.img}}">
             </div>
             <div>
                 <label for="Name">Name: </label>
@@ -48,7 +48,7 @@
                 {{/each}}
             </div>
             <div>
-                <label for="softSkills">SoftSkills: </label>
+                <label for="softSkills">Soft Skills: </label>
                 {{#each user.softSkills}}
                     <br>
                     <input type="checkbox" name="softSkillsChecked" value="{{this}}" checked>

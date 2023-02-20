@@ -1,6 +1,7 @@
 
 const express = require('express');
 const router = express.Router();
+const fileUploader = require('../config/cloudinary.config.js');
 
 const Company = require('../models/Company.model.js');
 const Dev = require('../models/Dev.model.js');
@@ -139,7 +140,7 @@ router.get('/profile/edit', async (req, res, next) => {
     }    
 });
 
-router.post('/profile/edit', async (req, res, next) => {
+router.post('/profile/edit', fileUploader.single('img'), async (req, res, next) => {
     
     try {
         const {
@@ -156,7 +157,7 @@ router.post('/profile/edit', async (req, res, next) => {
             linkedin,
             facebook,
             twitter,
-            isWorking
+            isWorking,
         } = req.body;
 
         let softSkillsArr = []
@@ -187,7 +188,8 @@ router.post('/profile/edit', async (req, res, next) => {
             linkedin,
             facebook,
             twitter,
-            isWorking
+            isWorking,
+            img: req.file.path
         })
         res.redirect('/dev/profile')
     } catch (error) {

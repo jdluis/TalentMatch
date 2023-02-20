@@ -1,8 +1,10 @@
 const express = require("express");
 const router = express.Router();
+const fileUploader = require('../config/cloudinary.config.js');
 
 const Company = require("../models/Company.model.js");
 const Dev = require("../models/Dev.model.js");
+
 
 router.get("/", async (req, res, next) => {
   try {
@@ -114,7 +116,7 @@ router.get("/profile/edit", async (req, res, next) => {
 
     const selectedTechStack = [];
     const deselectedTechStack = [];
-
+    
     enumValues.forEach((eachValue) => {
       if (company.techStack.includes(eachValue)) {
         selectedTechStack.push(eachValue);
@@ -133,7 +135,7 @@ router.get("/profile/edit", async (req, res, next) => {
   }
 });
 
-router.post("/profile/edit", async (req, res, next) => {
+router.post("/profile/edit", fileUploader.single('img'), async (req, res, next) => {
   try {
     const {
       companyName,
@@ -159,6 +161,7 @@ router.post("/profile/edit", async (req, res, next) => {
       twitter,
       website,
       techStack,
+      img: req.file.path
     });
     res.redirect("/company/profile");
   } catch (err) {
