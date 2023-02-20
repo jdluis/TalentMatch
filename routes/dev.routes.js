@@ -10,32 +10,44 @@ const { isLogged, isDev } = require('../middlewares/auth.middlewares.js');
 router.get('/',  async (req, res, next) => {
     
     try {
-        const response = await Company.find()
-        res.render('dev/main.hbs', {
-            response
-        })
-    } catch (error) {
-        next(error)
-    }
-});
+        const { search, favComp } = req.query;
 
-router.post('/', async (req, res, next) => {
-    
-    try {
-        const { techStack, favCompanies, search } = req.body; 
-        console.log(search);
-        const allCompanies = await Company.find()
-        const response = []
-        console.log(response);
-
-        allCompanies.forEach( (eachCompany) => {
-            if ( eachCompany.companyName == search) {
-                response.push(eachCompany)
+        const dev = await Dev.findById(req.session.User._id)
+        if ( search || favComp) {
+            if (favComp === 'true') {
+                const companiesList = await Company.find({
+                    '_id': {$in: dev.favouritesCompanies},
+                    $or: [
+                        {companyName: new RegExp(search, 'i')},
+                        {direction: new RegExp(search, 'i')},
+                        {description: new RegExp(search, 'i')},
+                        {techStack: new RegExp(search, 'i')},
+                    ],
+                });
+                res.render('dev/main.hbs', {
+                    companiesList
+                });
             }
-        })
-        res.render('dev/main.hbs', {
-            response
-        })
+            if (search && favComp !== 'true') {
+                const companiesList = await Company.find({
+                    $or: [
+                        {companyName: new RegExp(search, 'i')},
+                        {direction: new RegExp(search, 'i')},
+                        {description: new RegExp(search, 'i')},
+                        {techStack: new RegExp(search, 'i')},
+                    ],
+                });
+                res.render('dev/main.hbs', {
+                    companiesList
+                });
+            };
+        } else {
+            const companiesList = await Company.find();
+            res.render('dev/main.hbs', {
+                companiesList,
+            })
+        };
+
     } catch (error) {
         next(error)
     }

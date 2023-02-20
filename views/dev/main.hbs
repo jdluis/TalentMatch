@@ -1,45 +1,27 @@
 <div>
-
     <h1>MAIN</h1>
 
-    <form action="/dev" method="post">
+    <div>
+        <form action="/dev" method="get">
         <div>
-            <input type="checkbox" name="favCompanies" id="favCompanies">
-            <label for="favCompanies">Favourites Companies</label>
+            <h4>Search:</h4>
+            <input type="search" name="search" id="search" placeholder="Search">
+            <button>Global Search</button>
+            <button><label for="favComp">Fav Companies</label></button>
+            <input type="checkbox" id="favComp" value="true" name="favComp" hidden>
         </div>
-        <div>
-            <input type="checkbox" name="techStack" id="techStack">
-            <label for="techStack">Search by TechStack</label>
-        </div>
-
-        <input type="text" name="search" id="search" placeholder="search">
-        <button>Search</button>
-    </form>
+        </form>
+    </div>
     
-    {{#each response}}
-        <a href="/dev/{{this._id}}/details">{{this.companyName}}</a>
-        <ul>
-            {{#each this.techStack}}
+    {{#each companiesList}}
+        <div>
+            <h3>-> {{this.companyName}}</h3>
+            <ul>
+                {{#each this.techStack}}
                 <li>{{this}}</li>
-            {{/each}}
-        </ul>
+                {{/each}}
+            </ul>
+            <a href="/dev/{{this._id}}/details">See More</a>
+        </div>
     {{/each}}
-
 </div>
-
-<script>
-    const favCompanies = document.getElementById("favCompanies");
-    const techStack = document.getElementById("techStack");
-
-    favCompanies.addEventListener("change", function() {
-    if (favCompanies.checked) {
-        techStack.checked = false;
-    }
-    });
-
-    techStack.addEventListener("change", function() {
-    if (techStack.checked) {
-        favCompanies.checked = false;
-    }
-    });
-</script>
