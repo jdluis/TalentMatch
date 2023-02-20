@@ -11,8 +11,12 @@ const companies = require('./companies.json');
 
 const insertData = async () => {
     try {
+        await Dev.deleteMany()
+        await Company.deleteMany()
+
         await Dev.create(devs)
         await Company.create(companies)
+        
         console.log('Data added!')
         mongoose.connection.close()
     } catch (error) {
