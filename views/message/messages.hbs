@@ -1,8 +1,8 @@
 <div>
   {{#if isDev}}
-    <a href="/dev/{{idMsgView}}/details"><button>Back</button></a>
+    <a href="/dev/{{idMsgView}}/details"><button>View Details</button></a>
   {{else}}
-    <a href="/company/{{idMsgView}}/details"><button>Back</button></a>
+    <a href="/company/{{idMsgView}}/details"><button>View Details</button></a>
   {{/if}}
   <h1>Messages</h1>
   <div>
@@ -33,7 +33,7 @@
     {{/each}}
   </div>
   <div>
-    <form action="" method="post">
+    <form action="/message/{{idMsgView}}" method="post">
       <label for="message">Write your message:</label>
       <textarea name="message" id="message" cols="30" rows="10"></textarea>
       <button>Submit</button>

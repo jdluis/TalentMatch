@@ -5,6 +5,93 @@ const Company = require("../models/Company.model.js");
 const Dev = require("../models/Dev.model.js");
 const Message = require("../models/Message.model.js");
 
+router.get('/', async (req, res, next) => {
+  try {
+    let user;
+    if (req.session.User.role === "dev") {
+      user = await Dev.findById(req.session.User._id);
+      const messages = await Message.find({
+        $or: [
+          { $and: [{ transmitter: user }] },
+          { $and: [{ receiver: user }] },
+        ],
+      }).populate('transmitter receiver');
+      
+      let openMessages = [];
+  
+      messages.forEach( each => {
+        if (each.receiver.role === 'company') {
+          openMessages.push({
+            id: each.receiver._id,
+            name: each.receiver.companyName,
+            img: each.receiver.img
+          });
+        };
+        if (each.transmitter.role === 'company') {
+          openMessages.push({
+            id: each.transmitter._id,
+            name: each.transmitter.companyName,
+            img: each.transmitter.img
+          });
+        };
+      });
+  
+      let msgsFilter = openMessages.filter((obj, index, self) => {
+        return index === self.findIndex( (o) => {
+          return JSON.stringify(o.id) === JSON.stringify(obj.id) && o.name === obj.name
+        });
+      });
+  
+      res.render('message/index.hbs', {
+        openChats: msgsFilter
+      });
+    };
+    if (req.session.User.role === "company") {
+      user = await Company.findById(req.session.User._id);
+      const messages = await Message.find({
+        $or: [
+          { $and: [{ transmitter: user }] },
+          { $and: [{ receiver: user }] },
+        ],
+      }).populate('transmitter receiver');
+      
+      let openMessages = [];
+  
+      messages.forEach( each => {
+        if (each.receiver.role === 'dev') {
+          openMessages.push({
+            id: each.receiver._id,
+            name: each.receiver.name,
+            secondName: each.receiver.secondName,
+            img: each.receiver.img
+          });
+        };
+        if (each.transmitter.role === 'dev') {
+          openMessages.push({
+            id: each.transmitter._id,
+            name: each.transmitter.name,
+            secondName: each.transmitter.secondName,
+            img: each.transmitter.img
+          });
+        };
+      });
+  
+      let msgsFilter = openMessages.filter((obj, index, self) => {
+        return index === self.findIndex( (o) => {
+          return JSON.stringify(o.id) === JSON.stringify(obj.id) && o.name === obj.name
+        });
+      });
+  
+      res.render('message/index.hbs', {
+        openChats: msgsFilter
+      });
+    };
+    
+  } catch (error) {
+    next(error)
+  }
+})
+
 router.get("/:id", async (req, res, next) => {
   try {
 
@@ -33,7 +120,6 @@ router.get("/:id", async (req, res, next) => {
         messages: messagesClon,
         idMsgView: id,
         isDev: true,
-       /*  isTransmitter */
       });
 
     } else if (req.session.User.role === "company") {
@@ -80,7 +166,8 @@ router.post("/:id", async (req, res, next) => {
           message,
           receiver: id,
           transmitter: req.session.User._id,
-          docmodel: "Dev",
+          transmitterModel: "Dev",
+          receiverModel: "Company",
         });
       }
 
@@ -91,7 +178,8 @@ router.post("/:id", async (req, res, next) => {
           message,
           receiver: id,
           transmitter: req.session.User._id,
-          docmodel: "Company",
+          transmitterModel: "Company",
+          receiverModel: "Dev",
         });
       }
 

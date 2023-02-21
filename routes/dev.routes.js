@@ -60,13 +60,7 @@ router.get('/:companyId/details', async (req, res, next) => {
     try {
         const company = await Company.findById(req.params.companyId)
         const user = await Dev.findById(req.session.User._id).populate('favouritesCompanies')
-        const messages = await Message.find({
-            $or:[
-                { $and: [{transmitter: user}, {receiver: company}]},
-                { $and: [{transmitter: company}, {receiver: user}]}
-              ]
-            }).populate('transmitter');
-
+        
         let isFavorite = false;
         user.favouritesCompanies.forEach(eachFav => {
 
@@ -76,8 +70,7 @@ router.get('/:companyId/details', async (req, res, next) => {
         });
         res.render('dev/companyDetails.hbs', {
             company,
-            isFavorite,
-            messages
+            isFavorite
         })
     } catch (error) {
         next(error)
@@ -100,16 +93,7 @@ router.post('/:companyId/details', async (req, res, next) => {
             await Dev.findByIdAndUpdate(req.session.User._id, {
                 $pull: { favouritesCompanies: delCompany },
                 });
-        }
-
-        if (message) {
-            await Message.create({
-                message,
-                receiver: companyId,
-                transmitter: req.session.User._id,
-                docmodel: 'Dev'
-            })
-        }
+        };
 
         res.redirect(`/dev/${companyId}/details`);
     } catch (error) {

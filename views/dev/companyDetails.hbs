@@ -26,12 +26,12 @@
         <a href="{{company.twitter}}">Twitter</a>
     </div>
     {{#if isFavorite}}
-        <form action="" method="post">
+        <form action="/dev/{{company._id}}/details" method="post">
             <input type="checkbox" value="{{company._id}}" name="delCompany" checked hidden>
             <button>Delete Fav</button>
         </form>
         {{else}}
-            <form action="" method="post">
+            <form action="/dev/{{company._id}}/details" method="post">
             <input type="checkbox" value="{{company._id}}" name="favCompany" checked hidden>
             <button>Add to Fav</button>
             </form>

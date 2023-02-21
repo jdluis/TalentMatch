@@ -34,7 +34,7 @@
     </p>
 
     {{#if isFavorite}}
-      <form method="post">
+      <form action="/company/{{devDetails._id}}/details" method="post">
         <input
           type="checkbox"
           value="{{devDetails._id}}"
@@ -45,7 +45,7 @@
         <button>Delete Fav</button>
       </form>
     {{else}}
-      <form method="post">
+      <form action="/company/{{devDetails._id}}/details" method="post">
         <input
           type="checkbox"
           value="{{devDetails._id}}"

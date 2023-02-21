@@ -9,18 +9,23 @@ const messageSchema = new Schema({
     transmitter: {
         type: Schema.Types.ObjectId,
         required: true,
-        refPath: 'docmodel'
+        refPath: 'transmitterModel'
     },
     receiver: {
         type: Schema.Types.ObjectId,
         required: true,
-        refPath: 'docmodel'
+        refPath: 'receiverModel'
     },
-    docmodel: {
+    transmitterModel: {
         type: String,
         required: true,
         enum: ['Dev', 'Company']
-    }
+    },
+    receiverModel: {
+        type: String,
+        required: true,
+        enum: ['Dev', 'Company']
+    },
 });
 
 const Message = model('Message', messageSchema);
