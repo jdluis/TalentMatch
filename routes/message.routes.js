@@ -20,18 +20,17 @@ router.get("/:id", async (req, res, next) => {
         ],
       }).populate("transmitter");
 
-      let isTransmitter = [];
-
-   /*    messages.forEach (each => {
-        if (user._id === each.transmitter) {
-            isTransmitter.push(true)
+      let messagesClon = JSON.parse(JSON.stringify(messages));
+      messagesClon.forEach (each => {
+        
+        if (req.session.User._id == each.transmitter._id) {
+          each.isTransmitter = true
         } else {
-            isTransmitter.push(false)
+          each.isTransmitter = false
         }
-      }) */
-
+      });
       res.render("message/messages.hbs", {
-        messages,
+        messages: messagesClon,
         idMsgView: id,
         isDev: true,
        /*  isTransmitter */
@@ -48,21 +47,20 @@ router.get("/:id", async (req, res, next) => {
         ],
       }).populate("transmitter");
 
-      let isTransmitter = [];
-
-   /*    messages.forEach (each => {
-        if (user._id === each.transmitter) {
-            isTransmitter.push(true)
+      let messagesClon = JSON.parse(JSON.stringify(messages));
+      messagesClon.forEach (each => {
+        
+        if (req.session.User._id == each.transmitter._id) {
+          each.isTransmitter = true
         } else {
-            isTransmitter.push(false)
+          each.isTransmitter = false
         }
-      }) */
+      });
 
       res.render("message/messages.hbs", {
-        messages,
+        messages: messagesClon,
         idMsgView: id,
         isDev: false,
-        /* isTransmitter */
       });
     }
 
@@ -104,21 +102,33 @@ router.post("/:id", async (req, res, next) => {
   }
 });
 
+router.post('/:idForMsg/edit', async (req, res, next) => {
+  try {
+    const { msgId, updateMsg } = req.body;
+    const { idForMsg } = req.params;
+    
+    const message = await Message.findById(msgId);
+    if (req.session.User._id == message.transmitter) {
+      await Message.findByIdAndUpdate(msgId, {
+        message: updateMsg
+      })
+    }
+    res.redirect(`/message/${idForMsg}`);
+  } catch (error) {
+    next(error)
+  }
+});
+
 router.post("/:idForMsg/delete", async (req, res, next) => {
   try {
     const { messageId } = req.body;
-    
     const { idForMsg } = req.params;
-
-    console.log(req.query) ;
-    console.log(idForMsg, messageId)
 
     //Validation of true transmitter
     const message = await Message.findById(messageId);
-    /* if (req.session.User._id === message.transmitter) {
-        console.log("AQUI ESTOY") */
+    if (req.session.User._id == message.transmitter) { 
       await Message.findByIdAndDelete(messageId);
-    /*} */
+    }
 
     res.redirect(`/message/${idForMsg}`);
   } catch (error) {

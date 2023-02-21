@@ -13,16 +13,23 @@
         <h4>{{this.transmitter.name}} write: </h4>
       {{/if}}
 
-      <p>{{this.message}}</p>
+    {{#if this.isTransmitter}}
+      <form action="/message/{{../idMsgView}}/edit" method="post">
+        <input type="checkbox" name="msgId" value="{{this._id}}" checked hidden>
+        <input type="text" name="updateMsg" value="{{this.message}}">
+        <button>Edit</button>
+      </form>
+      {{else}}
+        <p>{{this.message}}</p>
+      {{/if}}
 
+    {{#if this.isTransmitter}}
+      <form action="/message/{{../idMsgView}}/delete" method="post">
+        <input hidden name="messageId" value="{{this._id}}" type="text" />
+        <button>Delete</button>
+      </form>
+    {{/if}}
 
-    {{!-- Falta validacion --}}
-  {{!--   {{#if }} --}}
-        <form action="/message/{{../idMsgView}}/delete" method="post">
-          <input hidden name="messageId" value="{{this._id}}" type="text" />
-          <button>Delete</button>
-        </form>
-   {{!--  {{/if}} --}}
     {{/each}}
   </div>
   <div>
