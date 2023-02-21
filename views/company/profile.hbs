@@ -1,27 +1,27 @@
 <div>
-  <h1>{{company.name}} Profile</h1>
+  <h1>{{companyUser.name}} Profile</h1>
   <div>
     <div>
-      <img src="{{company.img}}" alt="{{company.name}}">
+      <img src="{{companyUser.img}}" alt="{{companyUser.name}}">
     </div>
-    <p><span>Name: </span>{{company.companyName}}</p>
-    <p><span>email: </span>{{company.email}}</p>
-    <p><span>Telephone: </span>{{company.telephone}}</p>
-    <p><span>Location: </span>{{company.direction}}</p>
-    <p><span>Description: </span>{{company.description}}</p>
+    <p><span>Name: </span>{{companyUser.companyName}}</p>
+    <p><span>email: </span>{{companyUser.email}}</p>
+    <p><span>Telephone: </span>{{companyUser.telephone}}</p>
+    <p><span>Location: </span>{{companyUser.direction}}</p>
+    <p><span>Description: </span>{{companyUser.description}}</p>
     <p><span>Tech Stack: </span></p>
     <ul>
-      {{#each company.techStack}}
+      {{#each companyUser.techStack}}
         <li>{{this}}</li>
       {{/each}}
     </ul>
-    <a href="{{company.website}}">Web Site</a>
-    <a href="{{company.linkedin}}">Linkedin</a>
-    <a href="{{company.facebook}}">Facebook</a>
-    <a href="{{company.twitter}}">Twitter</a>
+    <a href="{{companyUser.website}}">Web Site</a>
+    <a href="{{companyUser.linkedin}}">Linkedin</a>
+    <a href="{{companyUser.facebook}}">Facebook</a>
+    <a href="{{companyUser.twitter}}">Twitter</a>
     <p><span>Developers Following: </span></p>
     <ul>
-      {{#each company.markedDevs}}
+      {{#each companyUser.markedDevs}}
        <li><a href="/company/{{this._id}}/details">{{this.name}}</a></li>
       {{/each}}
     </ul>
