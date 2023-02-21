@@ -55,19 +55,19 @@ router.get('/',  async (req, res, next) => {
 router.get('/:companyId/details', async (req, res, next) => {
 
     try {
-        const company = await Company.findById(req.params.companyId)
+        const companyUser = await Company.findById(req.params.companyId)
         const devUser = await Dev.findById(req.session.User._id).populate('favouritesCompanies')
         
         let isFavorite = false;
         devUser.favouritesCompanies.forEach(eachFav => {
 
-            if (eachFav.companyName === company.companyName ) {
+            if (eachFav.companyName === companyUser.companyName ) {
                 isFavorite = true
             }
         });
         
         res.render('dev/companyDetails.hbs', {
-            company,
+            companyUser,
             isFavorite
         })
     } catch (error) {

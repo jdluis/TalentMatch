@@ -1,42 +1,39 @@
 <div>
-
-    <h1>Company Details</h1>
-    
     <div>
-    <h1>{{company.name}} Profile</h1>
+    <h1>{{companyUser.companyName}} Details</h1>
     <div>
         <div>
-            <img src="{{company.img}}" alt="{{company.name}}">
+            <img src="{{companyUser.img}}" alt="{{companyUser.name}}">
         </div>
-        <p><span>Name: </span>{{company.companyName}}</p>
-        <p><span>email: </span>{{company.email}}</p>
-        <p><span>Telephone: </span>{{company.telephone}}</p>
-        <p><span>Location: </span>{{company.direction}}</p>
-        <p><span>Description: </span>{{company.description}}</p>
-        <p><span>Direction: </span>{{company.direction}}</p>
+        <p><span>Name: </span>{{companyUser.companyName}}</p>
+        <p><span>email: </span>{{companyUser.email}}</p>
+        <p><span>Telephone: </span>{{companyUser.telephone}}</p>
+        <p><span>Location: </span>{{companyUser.direction}}</p>
+        <p><span>Description: </span>{{companyUser.description}}</p>
+        <p><span>Direction: </span>{{companyUser.direction}}</p>
         <p><span>Tech Stack: </span></p>
         <ul>
-        {{#each company.techStack}}
+        {{#each companyUser.techStack}}
             <li>{{this}}</li>
         {{/each}}
         </ul>
-        <a href="{{company.website}}">Web Site</a>
-        <a href="{{company.linkedin}}">Linkedin</a>
-        <a href="{{company.facebook}}">Facebook</a>
-        <a href="{{company.twitter}}">Twitter</a>
+        <a href="{{companyUser.website}}">Web Site</a>
+        <a href="{{companyUser.linkedin}}">Linkedin</a>
+        <a href="{{companyUser.facebook}}">Facebook</a>
+        <a href="{{companyUser.twitter}}">Twitter</a>
     </div>
     {{#if isFavorite}}
-        <form action="/dev/{{company._id}}/details" method="post">
-            <input type="checkbox" value="{{company._id}}" name="delCompany" checked hidden>
+        <form action="/dev/{{companyUser._id}}/details" method="post">
+            <input type="checkbox" value="{{companyUser._id}}" name="delCompany" checked hidden>
             <button>Delete Fav</button>
         </form>
         {{else}}
-            <form action="/dev/{{company._id}}/details" method="post">
-            <input type="checkbox" value="{{company._id}}" name="favCompany" checked hidden>
+            <form action="/dev/{{companyUser._id}}/details" method="post">
+            <input type="checkbox" value="{{companyUser._id}}" name="favCompany" checked hidden>
             <button>Add to Fav</button>
             </form>
     {{/if}}
 </div>
 <div>
-   <a href='/message/{{company.id}}'><button>Send Message</button></a> 
+   <a href='/message/{{companyUser.id}}'><button>Send Message</button></a> 
 </div>
