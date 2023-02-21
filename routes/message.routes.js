@@ -8,6 +8,8 @@ const Message = require("../models/Message.model.js");
 router.get('/', async (req, res, next) => {
   try {
     let user;
+    let openMessages = [];
+
     if (req.session.User.role === "dev") {
       user = await Dev.findById(req.session.User._id);
       const messages = await Message.find({
@@ -16,8 +18,6 @@ router.get('/', async (req, res, next) => {
           { $and: [{ receiver: user }] },
         ],
       }).populate('transmitter receiver');
-      
-      let openMessages = [];
   
       messages.forEach( each => {
         if (each.receiver.role === 'company') {
@@ -46,6 +46,7 @@ router.get('/', async (req, res, next) => {
         openChats: msgsFilter
       });
     };
+
     if (req.session.User.role === "company") {
       user = await Company.findById(req.session.User._id);
       const messages = await Message.find({
@@ -54,8 +55,6 @@ router.get('/', async (req, res, next) => {
           { $and: [{ receiver: user }] },
         ],
       }).populate('transmitter receiver');
-      
-      let openMessages = [];
   
       messages.forEach( each => {
         if (each.receiver.role === 'dev') {

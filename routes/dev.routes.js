@@ -6,8 +6,6 @@ const fileUploader = require('../config/cloudinary.config.js');
 const Company = require('../models/Company.model.js');
 const Dev = require('../models/Dev.model.js');
 
-const { isLogged, isDev } = require('../middlewares/auth.middlewares.js');
-
 router.get('/',  async (req, res, next) => {
     
     try {
@@ -67,7 +65,7 @@ router.get('/:companyId/details', async (req, res, next) => {
                 isFavorite = true
             }
         });
-        console.log(isFavorite);
+        
         res.render('dev/companyDetails.hbs', {
             company,
             isFavorite

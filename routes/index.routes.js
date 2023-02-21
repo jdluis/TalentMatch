@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 
 const { updateLocals, isLogged, isDev, isCompany } = require('../middlewares/auth.middlewares.js');
-const fileUploader = require('../config/cloudinary.config.js');
 router.use(updateLocals)
 
 /* GET home page */
