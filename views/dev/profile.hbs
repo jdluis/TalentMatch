@@ -1,39 +1,39 @@
 <div>
-    <h1>{{user.name}} Profile</h1>
+    <h1>{{devUser.name}} Profile</h1>
     <div>
         <div>
-            <img src="{{user.img}}" alt="{{user.name}}">
+            <img src="{{devUser.img}}" alt="{{devUser.name}}">
         </div>
-        <p><span>Name: </span>{{user.name}}</p>
-        <p><span>Second Name: </span>{{user.secondName}}</p>
-        <p><span>email: </span>{{user.email}}</p>
-        <p><span>Telephone: </span>{{user.telephone}}</p>
-        <p><span>Location: </span>{{user.location}}</p>
-        <p><span>Experience: </span>{{user.experience}}</p>
-        <p><span>Description: </span>{{user.description}}</p>
+        <p><span>Name: </span>{{devUser.name}}</p>
+        <p><span>Second Name: </span>{{devUser.secondName}}</p>
+        <p><span>email: </span>{{devUser.email}}</p>
+        <p><span>Telephone: </span>{{devUser.telephone}}</p>
+        <p><span>Location: </span>{{devUser.location}}</p>
+        <p><span>Experience: </span>{{devUser.experience}}</p>
+        <p><span>Description: </span>{{devUser.description}}</p>
         <p><span>Tech Skills: </span></p>
             <ul>
-                {{#each user.techSkills}}
+                {{#each devUser.techSkills}}
                     <li>{{this}}</li>
                 {{/each}}
             </ul>
         <p><span>Soft Skills: </span></p>
             <ul>
-                {{#each user.softSkills}}
+                {{#each devUser.softSkills}}
                     <li>{{this}}</li>
                 {{/each}}
             </ul>
-        <a href="{{user.resume}}">Resume</a>
-        <a href="{{user.linkedin}}">Linkedin</a>
-        <a href="{{user.facebook}}">Facebook</a>
-        <a href="{{user.twitter}}">Twitter</a>
+        <a href="{{devUser.resume}}">Resume</a>
+        <a href="{{devUser.linkedin}}">Linkedin</a>
+        <a href="{{devUser.facebook}}">Facebook</a>
+        <a href="{{devUser.twitter}}">Twitter</a>
         <p><span>Favourite Companies: </span></p>
             <ul>
-                {{#each user.favouritesCompanies}}
+                {{#each devUser.favouritesCompanies}}
                     <a href="/dev/{{this._id}}/details">{{this.companyName}}</a>
                 {{/each}}
             </ul>
-        <p><span>Is currently working: </span>{{#if user.isWorking}}Yes{{else}}No{{/if}}</p>  
+        <p><span>Is currently working: </span>{{#if devUser.isWorking}}Yes{{else}}No{{/if}}</p>  
     </div>
     <div>
         <a href="/dev/profile/edit"><button>Edit Profile</button></a>
