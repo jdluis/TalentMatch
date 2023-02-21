@@ -59,13 +59,7 @@ router.get("/:devId/details", async (req, res, next) => {
     const userCompany = await Company.findById(req.session.User._id).populate(
       "markedDevs"
     );
-    const messages = await Message.find({
-        $or:[
-          { $and: [{transmitter: devDetails}, {receiver: userCompany}]},
-          { $and: [{transmitter: userCompany}, {receiver: devDetails}]}
-        ]
-      }).populate('transmitter');
-
+    
     let isFavorite = false;
     userCompany.markedDevs.forEach((eachFav) => {
       if (eachFav.name === devDetails.name) {
@@ -76,7 +70,6 @@ router.get("/:devId/details", async (req, res, next) => {
     res.render("company/devDetails.hbs", {
       devDetails,
       isFavorite,
-      messages,
     });
   } catch (err) {
     next(err);
@@ -96,15 +89,6 @@ router.post("/:devId/details", async (req, res, next) => {
       await Company.findByIdAndUpdate(req.session.User._id, {
         $pull: { markedDevs: delDev },
       });
-    }
-
-    if (message) {
-        await Message.create({
-            message,
-            receiver: devId,
-            transmitter: req.session.User._id,
-            docmodel: 'Company'
-        })
     }
 
     res.redirect(`/company/${devId}/details`);
