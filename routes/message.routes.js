@@ -10,45 +10,82 @@ router.get('/', async (req, res, next) => {
     let user;
     if (req.session.User.role === "dev") {
       user = await Dev.findById(req.session.User._id);
+      const messages = await Message.find({
+        $or: [
+          { $and: [{ transmitter: user }] },
+          { $and: [{ receiver: user }] },
+        ],
+      }).populate('transmitter receiver');
+      
+      let openMessages = [];
+  
+      messages.forEach( each => {
+        if (each.receiver.role === 'company') {
+          openMessages.push({
+            id: each.receiver._id,
+            name: each.receiver.companyName,
+            img: each.receiver.img
+          });
+        };
+        if (each.transmitter.role === 'company') {
+          openMessages.push({
+            id: each.transmitter._id,
+            name: each.transmitter.companyName,
+            img: each.transmitter.img
+          });
+        };
+      });
+  
+      let msgsFilter = openMessages.filter((obj, index, self) => {
+        return index === self.findIndex( (o) => {
+          return JSON.stringify(o.id) === JSON.stringify(obj.id) && o.name === obj.name
+        });
+      });
+  
+      res.render('message/index.hbs', {
+        openChats: msgsFilter
+      });
     };
-    const messages = await Message.find({
-      $or: [
-        { $and: [{ transmitter: user }] },
-        { $and: [{ receiver: user }] },
-      ],
-    }).populate('transmitter receiver');
-    
-    let openMessages = [];
-
-    messages.forEach( each => {
-      if (each.receiver.role === 'company') {
-        openMessages.push({
-          id: each.receiver._id,
-          Name: each.receiver.companyName,
-        })
-      };
-      if (each.transmitter.role === 'company') {
-        openMessages.push({
-          id: each.transmitter._id,
-          Name: each.transmitter.companyName,
-        })
-      };
-    })
-
-    // let msgsFilter = openMessages.filter((item, index) => {
-    //   return openMessages.indexOf(JSON.stringify(item)) == index
-    // })
-
-    let msgsFilter = openMessages.filter((obj, index, self) => {
-      return index === self.findIndex( (o) => {
-        return o.name === obj.name
-      })
-    })
-
-    console.log(msgsFilter);
-
-
-    res.render('message/index.hbs')
+    if (req.session.User.role === "company") {
+      user = await Company.findById(req.session.User._id);
+      const messages = await Message.find({
+        $or: [
+          { $and: [{ transmitter: user }] },
+          { $and: [{ receiver: user }] },
+        ],
+      }).populate('transmitter receiver');
+      
+      let openMessages = [];
+  
+      messages.forEach( each => {
+        if (each.receiver.role === 'dev') {
+          openMessages.push({
+            id: each.receiver._id,
+            name: each.receiver.name,
+            secondName: each.receiver.secondName,
+            img: each.receiver.img
+          });
+        };
+        if (each.transmitter.role === 'dev') {
+          openMessages.push({
+            id: each.transmitter._id,
+            name: each.transmitter.name,
+            secondName: each.transmitter.secondName,
+            img: each.transmitter.img
+          });
+        };
+      });
+  
+      let msgsFilter = openMessages.filter((obj, index, self) => {
+        return index === self.findIndex( (o) => {
+          return JSON.stringify(o.id) === JSON.stringify(obj.id) && o.name === obj.name
+        });
+      });
+  
+      res.render('message/index.hbs', {
+        openChats: msgsFilter
+      });
+    };
     
   } catch (error) {
     next(error)
