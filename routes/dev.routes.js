@@ -78,7 +78,7 @@ router.get('/:companyId/details', async (req, res, next) => {
 router.post('/:companyId/details', async (req, res, next) => {
     
     try {
-        const { favCompany, delCompany, message } = req.body;
+        const { favCompany, delCompany } = req.body;
         const { companyId } = req.params;
 
         if ( favCompany ) {

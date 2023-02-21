@@ -4,7 +4,6 @@ const fileUploader = require('../config/cloudinary.config.js');
 
 const Company = require("../models/Company.model.js");
 const Dev = require("../models/Dev.model.js");
-const Message = require('../models/Message.model.js');
 
 
 router.get("/", async (req, res, next) => {
@@ -56,12 +55,12 @@ router.get("/", async (req, res, next) => {
 router.get("/:devId/details", async (req, res, next) => {
   try {
     const devDetails = await Dev.findById(req.params.devId);
-    const userCompany = await Company.findById(req.session.User._id).populate(
+    const companyUser = await Company.findById(req.session.User._id).populate(
       "markedDevs"
     );
     
     let isFavorite = false;
-    userCompany.markedDevs.forEach((eachFav) => {
+    companyUser.markedDevs.forEach((eachFav) => {
       if (eachFav.name === devDetails.name) {
         isFavorite = true;
       }
@@ -78,7 +77,7 @@ router.get("/:devId/details", async (req, res, next) => {
 
 router.post("/:devId/details", async (req, res, next) => {
   try {
-    const { favDev, delDev, message } = req.body;
+    const { favDev, delDev } = req.body;
     const { devId } = req.params;
 
     if (favDev) {
