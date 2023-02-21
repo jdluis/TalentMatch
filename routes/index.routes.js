@@ -20,4 +20,7 @@ router.use('/dev', isLogged, isDev, require('./dev.routes.js'));
 // Company Routes
 router.use('/company', isLogged, isCompany, require('./company.routes.js'));
 
+// Message Routes
+router.use('/message', isLogged, require('./message.routes.js'));
+
 module.exports = router;
