@@ -1,4 +1,4 @@
-<div class="container  mx-auto">
+<div class="container p-5 my-5 mx-auto">
   <h3 class="text-2xl mb-4 font-medium text-center">Search</h3>
   <div class="flex h-auto">
     <form
@@ -62,7 +62,7 @@
           <img class="w-full h-full rounded-full" src="{{this.img}}" alt="" />
         </div>
 
-        <div class="flex flex-col justify-center align-middle">
+        <div class="flex flex-col justify-center align-middle w-full flex-1">
           <h3 class="font-semibold text-slate-700">{{this.companyName}}</h3>
           <p class="flex text-xs text-gray-500 flex-row flex-wrap p">
             {{#each this.techStack}}
@@ -71,8 +71,8 @@
           </p>
         </div>
 
-        <div class="text-2xl  w-auto my-auto">
-          <a class="block float-right" href="/dev/{{this._id}}/details">></a>
+        <div class="text-2xl w-auto my-auto flex-shrink-0">
+          <a class="block" href="/dev/{{this._id}}/details">></a>
         </div>
       </div>
     {{/each}}
