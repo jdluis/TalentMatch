@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
 
-const { updateLocals, isLogged, isDev, isCompany } = require('../middlewares/auth.middlewares.js');
+const { updateLocals, isLogged, isNotLogged, isDev, isCompany } = require('../middlewares/auth.middlewares.js');
 router.use(updateLocals)
 
 /* GET home page */
-router.get("/", (req, res, next) => {
+router.get("/", isNotLogged, (req, res, next) => {
   res.render("index");
 });
 
