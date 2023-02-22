@@ -21,7 +21,7 @@ router.post('/signup', async (req, res, next) => {
     if ( email === "" || password === "" || passwordCheck === "" || role === undefined) {
 
         res.status(401).render('auth/signup-form.hbs', {
-            errorMsg: "All inputs should be completed"
+            errorMsg: "All inputs must be completed"
         })
         return
     };
@@ -29,7 +29,7 @@ router.post('/signup', async (req, res, next) => {
     if ( password !== passwordCheck) {
 
         res.status(401).render('auth/signup-form.hbs', {
-            errorMsg: "Password should be equal"
+            errorMsg: "Passwords must coincide"
         })
         return
     };
@@ -37,7 +37,7 @@ router.post('/signup', async (req, res, next) => {
     // if ( passwordRegex.test(password) === false) {
 
     //     res.status(401).render('auth/signup-form.hbs', {
-    //         errorMsg: "Password should be strongest"
+    //         errorMsg: "Password is not stronger enough"
     //     })
     //     return
     // };
@@ -50,7 +50,7 @@ router.post('/signup', async (req, res, next) => {
         if ( foundDev !== null || foundCompany !== null) {
 
             res.status(401).render('auth/signup-form.hbs', {
-                errorMsg: "Email registered!, try again!"
+                errorMsg: "This email is registered"
             })
             return
         };
@@ -94,7 +94,7 @@ router.post('/login', async (req, res, next) => {
     if ( email === "" || password === "" ) {
 
         res.status(401).render('auth/login-form.hbs', {
-            errorMsg: "All inputs should be completed"
+            errorMsg: "All inputs must be completed"
         })
         return
     };
@@ -106,7 +106,7 @@ router.post('/login', async (req, res, next) => {
 
         if ( foundDev === null && foundCompany === null) {
             res.status(401).render('auth/login-form.hbs', {
-                errorMsg: "Email not registered!, try again!"
+                errorMsg: "This email is not registered"
             })
             return
         };
@@ -117,7 +117,7 @@ router.post('/login', async (req, res, next) => {
             if ( checkPassword === false ) {
 
                 res.status(401).render('auth/login-form.hbs', {
-                    errorMsg: "Wron password, try again!"
+                    errorMsg: "Wrong password, try again!"
                 })
                 return
             };
@@ -137,7 +137,7 @@ router.post('/login', async (req, res, next) => {
 
             if ( checkPassword === false ) {
                 res.status(401).render('auth/login-form.hbs', {
-                    errorMsg: "Wron password, try again!"
+                    errorMsg: "Wrong password, try again!"
                 })
                 return
             };
