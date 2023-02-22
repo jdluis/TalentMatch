@@ -2,11 +2,13 @@
 const express = require('express');
 const router = express.Router();
 
+const { isNotLogged } = require('../middlewares/auth.middlewares.js');
+
 const Company = require('../models/Company.model.js');
 const Dev = require('../models/Dev.model.js');
 const bcrypt = require('bcryptjs');
 
-router.get('/signup', (req, res, next) => {
+router.get('/signup', isNotLogged, (req, res, next) => {
     res.render('auth/signup-form.hbs')
 });
 
@@ -81,7 +83,7 @@ router.post('/signup', async (req, res, next) => {
     };
 });
 
-router.get('/login', (req, res, next) => {
+router.get('/login', isNotLogged, (req, res, next) => {
     res.render('auth/login-form.hbs');
 });
 
