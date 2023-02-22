@@ -6,17 +6,19 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
       <title>{{appTitle}}</title>
+      <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+      <link rel="stylesheet" href="/stylesheets/output.css">
       <link rel="stylesheet" href="/stylesheets/style.css" />
    </head>
 
    <body>
 
       <nav>
-         <a href="/">Home</a>
          {{#if isUserActive}}
             <a href="/auth/logout">Log out</a>
             <a href="/message">Messages</a>
          {{else}}
+            <a href="/">Home</a>
             <a href="/auth/login">Login</a>
             <a href="/auth/signup">Sign Up</a>
          {{/if}}
