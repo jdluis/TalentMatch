@@ -310,5 +310,22 @@
         "techStack": [
             "Git"
         ]
+    },{
+        "companyName": "Company Test",
+        "email": "test@company.com",
+        "password": "$2a$12$BgPqkmiDt6xUwrfhu8DeUu/bGwaftE1hxsUUGqhSFveIXedvadll.",
+        "role": "company",
+        "description": "Test Description",
+        "img": "/images/logoTalentMatch.png",
+        "telephone": 14258828080,
+        "direction": "Test",
+        "linkedin": "",
+        "facebook": "",
+        "twitter": "",
+        "website": "",
+        "markedDevs": [],
+        "techStack": [
+            "Git"
+        ]
     }
 ]
