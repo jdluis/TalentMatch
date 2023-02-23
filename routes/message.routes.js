@@ -104,8 +104,7 @@ router.get("/:id", async (req, res, next) => {
           { $and: [{ transmitter: user }, { receiver: companyUser }] },
           { $and: [{ transmitter: companyUser }, { receiver: user }] },
         ],
-      }).populate("transmitter");
-
+      }).populate("transmitter receiver");
       let messagesClon = JSON.parse(JSON.stringify(messages));
       messagesClon.forEach (each => {
         
@@ -115,10 +114,14 @@ router.get("/:id", async (req, res, next) => {
           each.isTransmitter = false
         }
       });
+
+      console.log(messagesClon)
+
       res.render("message/messages.hbs", {
         messages: messagesClon,
         idMsgView: id,
         isDev: true,
+        user: companyUser
       });
 
     } else if (req.session.User.role === "company") {
@@ -130,7 +133,7 @@ router.get("/:id", async (req, res, next) => {
           { $and: [{ transmitter: user }, { receiver: companyUser }] },
           { $and: [{ transmitter: companyUser }, { receiver: user }] },
         ],
-      }).populate("transmitter");
+      }).populate("transmitter receiver");
 
       let messagesClon = JSON.parse(JSON.stringify(messages));
       messagesClon.forEach (each => {
@@ -146,6 +149,7 @@ router.get("/:id", async (req, res, next) => {
         messages: messagesClon,
         idMsgView: id,
         isDev: false,
+        user
       });
     }
 
