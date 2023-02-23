@@ -69,18 +69,22 @@ const devSchema = new Schema(
     resume: {
       type: String,
       trim: true,
+      default: "https://"
     },
     linkedin: {
       type: String,
       trim: true,
+      default: "https://"
     },
     facebook: {
       type: String,
       trim: true,
+      default: "https://"
     },
     twitter: {
       type: String,
       trim: true,
+      default: "https://"
     },
     favouritesCompanies: [
       {
