@@ -34,12 +34,12 @@ router.post('/signup', async (req, res, next) => {
         return
     };
 
-     if ( passwordRegex.test(password) === false) 
-         res.status(401).render('auth/signup-form.hbs', {
-             errorMsg: "Password is not stronger enough"
-         })
-         return
-     });
+     if ( passwordRegex.test(password) === false) {
+        res.status(401).render('auth/signup-form.hbs', {
+            errorMsg: "Password is not stronger enough"
+        })
+        return
+     };
 
     try {
         
