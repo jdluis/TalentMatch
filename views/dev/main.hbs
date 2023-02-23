@@ -9,14 +9,14 @@
 
       <div class="relative w-full">
         <input
-          class="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-lg border-2 border-gray-300 dark:bg-gray-700 dark:border-l-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white focus:outline-none"
+          class="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-lg border-2 border-gray-300 y-400 focus:outline-none"
           type="search"
           name="search"
           id="search"
           placeholder="Search"
         />
         <button
-          class="absolute top-0 right-11 p-2.5 text-sm font-medium text-white bg-green-600 border border-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+          class="absolute top-0 right-11 p-2.5 text-sm font-medium text-white bg-green-600 border border-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300"
         ><svg
             aria-hidden="true"
             class="w-5 h-5"
@@ -34,7 +34,7 @@
         </button>
 
         <button><label
-            class="absolute top-0 right-0 p-2.5 text-sm font-medium text-white bg-green-600 border-l-1 border-l-white rounded-r-lg border border-green-700 hover:cursor-pointer hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
+            class="absolute top-0 right-0 p-2.5 text-sm font-medium text-white bg-green-600 border-l-1 border-l-white rounded-r-lg border border-green-700 hover:cursor-pointer hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300"
             for="favComp"
           ><svg height="20px" width="20px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 501.28 501.28" xml:space="preserve" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <polygon style="fill:#FFDA44;" points="501.28,194.37 335.26,159.33 250.64,12.27 250.64,419.77 405.54,489.01 387.56,320.29 "></polygon> <polygon style="fill:#FFDA44;" points="166.02,159.33 0,194.37 113.72,320.29 95.74,489.01 250.64,419.77 250.64,12.27 "></polygon> </g> </g></svg></label></button>
         <input
@@ -53,7 +53,9 @@
   </div>
 
   <div class="sm:container mt-3 mx-auto flex flex-col gap-4">
+   
     {{#each companiesList}}
+    <a href="/dev/{{this._id}}/details">
       <div class="flex flex-row justify-start border-y-2 gap-5 my-1 py-2 px-4 w-full">
         <div class="w-14 h-14">
           <img class="w-full h-full object-contain rounded-full" src="{{this.img}}" alt="" />
@@ -69,9 +71,10 @@
         </div>
 
         <div class="text-2xl w-auto my-auto flex-shrink-0">
-          <a class="block" href="/dev/{{this._id}}/details">></a>
+          <p class="block">></p>
         </div>
       </div>
+        </a>
     {{/each}}
   </div>
 
