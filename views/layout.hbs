@@ -1,20 +1,18 @@
 <html lang='en'>
-
   <head>
     <meta charset='UTF-8' />
     <meta name='viewport' content='width=device-width, initial-scale=1.0' />
     <meta http-equiv='X-UA-Compatible' content='ie=edge' />
     <title>{{appTitle}}</title>
     <link rel='stylesheet' href='/stylesheets/output.css' />
-    <link rel='stylesheet' href='/stylesheets/style.css' />
     <link rel='stylesheet' href='https://rsms.me/inter/inter.css' />
   </head>
 
-  <body class='sm:visible md:hidden'>
+  <body class='md:visible lg:hidden min-h-screen'>
    {{{body}}}
 
    {{#if isUserActive}}
-      <nav class='sticky bg-green-600 h-14 bottom-0 items-center flex flex-row justify-around'>
+      <nav class='fixed w-full bg-green-600 h-14 bottom-0 items-center flex flex-row justify-around'>
          <a href='/auth/logout'><svg
                width='24px'
                viewBox='0 0 24 24'
