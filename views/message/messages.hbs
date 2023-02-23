@@ -14,7 +14,7 @@
           {{user.companyName}}
           {{/if}}
           {{#if user.name}}
-          {{user.name}}
+          {{user.name}} {{user.secondName}}
           {{/if}}
           </button></a>
     {{else}}
@@ -23,7 +23,7 @@
           {{user.companyName}}
           {{/if}}
           {{#if user.name}}
-          {{user.name}}
+          {{user.name}} {{user.secondName}}
           {{/if}}
         </button></a>
     {{/if}}
@@ -44,7 +44,7 @@
       {{#if this.transmitter.companyName}}
         <h4 class="font-bold">{{this.transmitter.companyName}}</h4>
       {{else}}
-        <h4 class="font-bold">{{this.transmitter.name}}</h4>
+        <h4 class="font-bold">{{this.transmitter.name}} {{this.transmitter.secondName}}</h4>
       {{/if}}
     </div>
     <div class="flex flex-col">
@@ -90,5 +90,5 @@
         }
       }
 
-      setInterval(refreshPage, 10000);
+      setInterval(refreshPage, 6000);
 </script>
