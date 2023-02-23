@@ -1,10 +1,30 @@
-<div>
-
-    <h2>All Messages:</h2>
-
+<div class='container m-auto'>
+    <div class="border-b-2 bg-green-600 rounded-b-full">
+        <h2 class="text-center text-2xl py-2 text-white font-bold">Inbox</h2>
+    </div>
+  <div class='sm:container mt-3 mx-auto flex flex-col gap-4'>
     {{#each openChats}}
-        <img src="{{this.img}}" alt="{{this.name}}" width="50px">
-        <a href="/message/{{this.id}}">{{this.name}} {{this.secondName}}</a>
-    {{/each}}
+      <a href='/message/{{this.id}}'>
+        <div class='flex flex-row justify-start shadow-lg hover:shadow-md hover:shadow-green-600 active:shadow-green-600 gap-5 my-1 py-2 px-4 w-full'>
 
+          <div class='w-14 h-auto'>
+            <img class='w-full h-14 rounded-full' src='{{this.img}}' alt='user avatar' />
+          </div>
+
+          <div class='flex flex-col justify-center align-middle w-full flex-1'>
+            <h3 class=' text-center font-semibold text-slate-700'>{{this.name}} {{this.secondName}}</h3>
+            <p class='flex text-xs text-gray-500 flex-row flex-wrap p'>
+              {{#each this.techSkills}}
+                {{this}}
+              {{/each}}
+            </p>
+          </div>
+
+          <div class='text-2xl w-auto my-auto flex-shrink-0'>
+            <p class='block'><svg width="24px" height="24px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <rect width="24" height="24" fill="white"></rect> <path fill-rule="evenodd" clip-rule="evenodd" d="M7 10C7 9.44772 7.44772 9 8 9H8.01C8.56228 9 9.01 9.44772 9.01 10C9.01 10.5523 8.56228 11 8.01 11H8C7.44772 11 7 10.5523 7 10ZM11 10C11 9.44772 11.4477 9 12 9H12.01C12.5623 9 13.01 9.44772 13.01 10C13.01 10.5523 12.5623 11 12.01 11H12C11.4477 11 11 10.5523 11 10ZM16 9C15.4477 9 15 9.44772 15 10C15 10.5523 15.4477 11 16 11H16.01C16.5623 11 17.01 10.5523 17.01 10C17.01 9.44772 16.5623 9 16.01 9H16ZM6.93417 2C6.95604 2 6.97799 2 7 2L17.0658 2C17.9523 1.99995 18.7161 1.99991 19.3278 2.08215C19.9833 2.17028 20.6117 2.36902 21.1213 2.87868C21.631 3.38835 21.8297 4.0167 21.9179 4.67221C22.0001 5.28388 22.0001 6.0477 22 6.9342V13.0658C22.0001 13.9523 22.0001 14.7161 21.9179 15.3278C21.8297 15.9833 21.631 16.6117 21.1213 17.1213C20.6117 17.631 19.9833 17.8297 19.3278 17.9179C18.7161 18.0001 17.9523 18.0001 17.0658 18L14 18C13.8864 18 13.7757 18.036 13.6838 18.1028L9.27568 21.3087C8.32858 21.9975 7 21.321 7 20.1499V18C6.22604 18 5.44118 18.0213 4.67221 17.9179C4.0167 17.8297 3.38835 17.631 2.87868 17.1213C2.36902 16.6117 2.17028 15.9833 2.08215 15.3278C1.99991 14.7161 1.99995 13.9523 2 13.0658L2 7C2 6.97799 2 6.95604 2 6.93417C1.99995 6.04769 1.99991 5.28387 2.08215 4.67221C2.17028 4.0167 2.36902 3.38835 2.87868 2.87868C3.38835 2.36902 4.0167 2.17028 4.67221 2.08215C5.28387 1.99991 6.04769 1.99995 6.93417 2Z" fill="#16a34a"></path> </g></svg></p>
+          </div>
+        </div>
+      </a>
+    {{/each}}
+  </div>
 </div>

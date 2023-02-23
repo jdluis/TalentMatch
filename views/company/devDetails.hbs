@@ -129,23 +129,31 @@
       </div>
     </div>
 
-    <div class=" m-10 text-sm pt-5 border-t-2 gap-5 flex flex-col items-center text-white font-bold">
-      <div>
+    <div class=" m-5 text-sm pt-6 border-t-2 flex flex-col items-center text-white font-bold">
+      <div class="w-52">
         {{#if isFavorite}}
-          <form action='/dev/{{devDetails._id}}/details' method='post'>
-            <input type='checkbox' value='{{devDetails._id}}' name='delCompany' checked hidden />
-            <button class="hover:opacity-70 active:opacity-75 rounded-full bg-green-600 p-2">Delete Fav</button>
+          <form action='/company/{{devDetails._id}}/details' method='post'>
+            <input type='checkbox' value='{{devDetails._id}}' name='delDev' checked hidden />
+            <button class="group relative flex w-full justify-center rounded-md border border-transparent bg-green-600 py-2 px-4 text-sm font-medium text-white mb-10">
+          Delete Fav
+         </button>
           </form>
         {{else}}
-          <form action='/dev/{{devDetails._id}}/details' method='post'>
-            <input type='checkbox' value='{{devDetails._id}}' name='favCompany' checked hidden />
-            <button class="hover:opacity-70 active:opacity-75 rounded-full bg-green-600 p-2">Add to Fav</button>
+          <form action='/company/{{devDetails._id}}/details' method='post'>
+            <input type='checkbox' value='{{devDetails._id}}' name='favDev' checked hidden />
+            <button class="group relative flex w-full justify-center rounded-md border border-transparent bg-green-600 py-2 px-4 text-sm font-medium text-white mb-10">
+          Add Fav
+         </button>
           </form>
         {{/if}}
       </div>
 
-      <div>
-        <a class="hover:opacity-70 active:opacity-75 rounded-full bg-green-600 p-2" href='/message/{{devDetails.id}}'><button>Send Message</button></a>
+      <div class="w-52">
+        <a href='/message/{{devDetails.id}}'>
+        <button type="submit" class="group relative flex w-full justify-center rounded-md border border-transparent bg-green-600 py-2 px-4 text-sm font-medium text-white mb-10">
+          Send Message
+         </button>
+        </a>     
       </div>
     </div>
   </div>
