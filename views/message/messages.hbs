@@ -40,3 +40,14 @@
     </form>
   </div>
 </div>
+
+<script>
+  function refreshPage() {
+        const isTextboxFocused = document.activeElement.id === "message";
+        if (!isTextboxFocused) {
+          window.location.reload();
+        }
+      }
+
+      setInterval(refreshPage, 5000);
+</script>
