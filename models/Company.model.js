@@ -38,19 +38,23 @@ const CompanySchema = new Schema(
     },
     linkedin: {
         type: String,
-        trim: true
+        trim: true,
+        default: "https://"
     },
     facebook: {
         type: String,
-        trim: true
+        trim: true,
+        default: "https://"
     },
     twitter: {
         type: String,
-        trim: true
+        trim: true,
+        default: "https://"
     },
     website: {
         type: String,
-        trim: true
+        trim: true,
+        default: "https://"
     },
     markedDevs: [
       {

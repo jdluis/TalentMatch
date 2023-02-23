@@ -8,6 +8,17 @@ const isLogged = (req, res, next) => {
     }
 };
 
+const isNotLogged = (req, res, next) => {
+
+    if (req.session.User === undefined) {
+        next()
+    } else if (req.session.User.role === 'dev') {
+        res.redirect('/dev')
+    } else if (req.session.User.role === 'company') {
+        res.redirect('/company')
+    }
+};
+
 const isDev = (req, res, next) => {
     if ( req.session.User.role === 'dev'){
         next()
@@ -48,6 +59,7 @@ const updateLocals = (req, res, next) => {
 
 module.exports = {
     isLogged,
+    isNotLogged,
     isDev,
     isCompany,
     updateLocals,

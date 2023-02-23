@@ -4,7 +4,6 @@ const fileUploader = require('../config/cloudinary.config.js');
 
 const Company = require("../models/Company.model.js");
 const Dev = require("../models/Dev.model.js");
-const Message = require('../models/Message.model.js');
 
 
 router.get("/", async (req, res, next) => {
@@ -12,11 +11,11 @@ router.get("/", async (req, res, next) => {
     const { search, favDevs } = req.query;
     
     // Filter
-    const company = await Company.findById(req.session.User._id)
+    const companyUser = await Company.findById(req.session.User._id)
     if (search || favDevs) {
       if (favDevs === "true") {
         const devList = await Dev.find({
-          '_id': {$in: company.markedDevs},
+          '_id': {$in: companyUser.markedDevs},
           $or: [
             { name: new RegExp(search, "i") },
             { description: new RegExp(search, "i") },
@@ -56,12 +55,12 @@ router.get("/", async (req, res, next) => {
 router.get("/:devId/details", async (req, res, next) => {
   try {
     const devDetails = await Dev.findById(req.params.devId);
-    const userCompany = await Company.findById(req.session.User._id).populate(
+    const companyUser = await Company.findById(req.session.User._id).populate(
       "markedDevs"
     );
     
     let isFavorite = false;
-    userCompany.markedDevs.forEach((eachFav) => {
+    companyUser.markedDevs.forEach((eachFav) => {
       if (eachFav.name === devDetails.name) {
         isFavorite = true;
       }
@@ -78,7 +77,7 @@ router.get("/:devId/details", async (req, res, next) => {
 
 router.post("/:devId/details", async (req, res, next) => {
   try {
-    const { favDev, delDev, message } = req.body;
+    const { favDev, delDev } = req.body;
     const { devId } = req.params;
 
     if (favDev) {
@@ -99,11 +98,11 @@ router.post("/:devId/details", async (req, res, next) => {
 
 router.get("/profile", async (req, res, next) => {
   try {
-    const company = await Company.findById(req.session.User._id).populate(
+    const companyUser = await Company.findById(req.session.User._id).populate(
       "markedDevs"
     );
     res.render("company/profile.hbs", {
-      company,
+      companyUser,
     });
   } catch (err) {
     next(err);
@@ -112,14 +111,14 @@ router.get("/profile", async (req, res, next) => {
 
 router.get("/profile/edit", async (req, res, next) => {
   try {
-    const company = await Company.findById(req.session.User._id);
-    const enumValues = company.schema.path("techStack").caster.enumValues;
+    const companyUser = await Company.findById(req.session.User._id);
+    const enumValues = companyUser.schema.path("techStack").caster.enumValues;
 
     const selectedTechStack = [];
     const deselectedTechStack = [];
     
     enumValues.forEach((eachValue) => {
-      if (company.techStack.includes(eachValue)) {
+      if (companyUser.techStack.includes(eachValue)) {
         selectedTechStack.push(eachValue);
       } else {
         deselectedTechStack.push(eachValue);
@@ -127,7 +126,7 @@ router.get("/profile/edit", async (req, res, next) => {
     });
 
     res.render("company/edit.hbs", {
-      company,
+      companyUser,
       selectedTechStack,
       deselectedTechStack,
     });
@@ -174,9 +173,9 @@ router.post("/profile/edit", fileUploader.single('img'), async (req, res, next) 
 
 router.get("/profile/delete", async (req, res, next) => {
   try {
-    const company = await Company.findById(req.session.User._id);
+    const companyUser = await Company.findById(req.session.User._id);
     res.render("company/delete.hbs", {
-      company,
+      companyUser,
     });
   } catch (err) {
     next(err);

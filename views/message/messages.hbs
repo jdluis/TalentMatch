@@ -16,7 +16,7 @@
     {{#if this.isTransmitter}}
       <form action="/message/{{../idMsgView}}/edit" method="post">
         <input type="checkbox" name="msgId" value="{{this._id}}" checked hidden>
-        <input type="text" name="updateMsg" value="{{this.message}}">
+        <input type="text" name="updateMsg" id="editMsg" value="{{this.message}}">
         <button>Edit</button>
       </form>
       {{else}}
@@ -40,3 +40,15 @@
     </form>
   </div>
 </div>
+
+<script>
+  function refreshPage() {
+        const isMessageFocused = document.activeElement.id === "message";
+        const isEditFocused = document.activeElement.id === "editMsg";
+        if (!isMessageFocused && !isEditFocused) {
+          window.location.reload();
+        }
+      }
+
+      setInterval(refreshPage, 10000);
+</script>

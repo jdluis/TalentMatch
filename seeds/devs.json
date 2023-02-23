@@ -112,5 +112,24 @@
     "favouritesCompanies": [],
     "isWorking": true,
     "role": "dev"
+  },{
+    "name": "Developer",
+    "secondName": "Test",
+    "email": "test@dev.com",
+    "password": "$2a$12$zSWxDkqaRStCuCFrhImQNOH.NAW/stYFbbKJn/YrjL/a5cn5SnL1y",
+    "img": "/images/defaultAvatar.png",
+    "telephone": 123456789,
+    "location": "Chicago",
+    "experience": "Front-end developer with 3 years of experience",
+    "description": "I am passionate about creating engaging and user-friendly interfaces",
+    "techSkills": ["React", "Angular", "Vue.JS", "CSS", "HTML"],
+    "softSkills": ["Collaboration", "Creativity", "Attention to detail"],
+    "resume": "https://example.com/resume.pdf",
+    "linkedin": "https://www.linkedin.com/in/markjohnson/",
+    "facebook": "https://www.facebook.com/markjohnson/",
+    "twitter": "https://twitter.com/markjohnson",
+    "favouritesCompanies": [],
+    "isWorking": true,
+    "role": "dev"
   } 
 ]
