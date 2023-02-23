@@ -1,42 +1,82 @@
-<div>
-  {{#if isDev}}
-    <a href="/dev/{{idMsgView}}/details"><button>View Details</button></a>
-  {{else}}
-    <a href="/company/{{idMsgView}}/details"><button>View Details</button></a>
-  {{/if}}
-  <h1>Messages</h1>
-  <div>
-    {{#each messages}}
-      {{#if this.transmitter.companyName}}
-        <h4>{{this.transmitter.companyName}} write: </h4>
-      {{else}}
-        <h4>{{this.transmitter.name}} write: </h4>
-      {{/if}}
+<div class=" flex overflow-x-hidden flex-col max-w-sm mx-auto mb-20">
+  <div class="p-2 left-0 border-b-2 fixed top-0 bg-green-600 w-full">
+    <div class="flex items-center gap-5">
 
-    {{#if this.isTransmitter}}
-      <form action="/message/{{../idMsgView}}/edit" method="post">
-        <input type="checkbox" name="msgId" value="{{this._id}}" checked hidden>
-        <input type="text" name="updateMsg" id="editMsg" value="{{this.message}}">
-        <button>Edit</button>
-      </form>
-      {{else}}
-        <p>{{this.message}}</p>
-      {{/if}}
+     
+      <div class="w-10 h-10">
+        <img class="w-full h-full bg-white rounded-full object-contain" src="{{user.img}}" alt="img user">
+      </div>
+      
 
-    {{#if this.isTransmitter}}
-      <form action="/message/{{../idMsgView}}/delete" method="post">
-        <input hidden name="messageId" value="{{this._id}}" type="text" />
-        <button>Delete</button>
-      </form>
+    {{#if isDev}}
+        <a class="text-white font-bold" href="/dev/{{idMsgView}}/details"><button>
+          {{#if user.companyName}}
+          {{user.companyName}}
+          {{/if}}
+          {{#if user.name}}
+          {{user.name}}
+          {{/if}}
+          </button></a>
+    {{else}}
+        <a class="text-white font-bold" href="/company/{{idMsgView}}/details"><button>
+            {{#if user.companyName}}
+          {{user.companyName}}
+          {{/if}}
+          {{#if user.name}}
+          {{user.name}}
+          {{/if}}
+        </button></a>
     {{/if}}
-
-    {{/each}}
+    </div>
   </div>
-  <div>
+
+    {{#each messages}}
+  <div class="m-5 mx-10 p-2 mt-14">
+    <div class="flex items-center gap-5">
+        <div class="w-8 h-8">
+          {{#if this.isTransmitter}}
+          <img class="rounded-full w-full h-full object-contain" src="{{this.transmitter.img}}" alt="user avatar">
+          {{else}}
+          <img class="rounded-full w-full h-full object-contain" src="{{../user.img}}" alt="user avatar">
+          {{/if}}
+        </div>
+      
+      {{#if this.transmitter.companyName}}
+        <h4 class="font-bold">{{this.transmitter.companyName}}</h4>
+      {{else}}
+        <h4 class="font-bold">{{this.transmitter.name}}</h4>
+      {{/if}}
+    </div>
+    <div class="flex flex-col">
+      {{#if this.isTransmitter}}
+      <details>
+        <summary class="relative left-60 bottom-8 list-none text-xl px-2  py-1 text-green-600" >✎</summary>
+        <form class="py-2" action="/message/{{../idMsgView}}/edit" method="post">
+          <input type="checkbox" name="msgId" value="{{this._id}}" checked hidden>
+          <textarea class="border h-20" type="text" name="updateMsg" id="editMsg">{{this.message}} </textarea>
+          <button class="relative top-2 right-40 rounded-full float-right border bg-green-600 text-white text-sm py-1 px-4" >Update</button>
+        </form>
+
+         {{#if this.isTransmitter}}
+        <form class="relative bottom-9 left-12" action="/message/{{../idMsgView}}/delete" method="post">
+          <input hidden name="messageId" value="{{this._id}}" type="text" />
+          <button class="relative top-5 right-10 rounded-full float-right border bg-red-600 text-white text-sm py-1 px-4">Delete</button>
+        </form>
+      {{/if}}
+
+      </details>
+         <p class="p-2">{{this.message}}</p>
+        {{else}}
+          <p class="p-2">{{this.message}}</p>
+        {{/if}}
+    </div>
+
+  </div>
+    {{/each}}
+  <div class="fixed bottom-6 left-0 p-4 border-t-2 bg-white  w-full">
     <form action="/message/{{idMsgView}}" method="post">
-      <label for="message">Write your message:</label>
-      <textarea name="message" id="message" cols="30" rows="10"></textarea>
-      <button>Submit</button>
+      <textarea placeholder="Write your message" class="p-2 rounded-md  bg-gray-100 w-full h-20" name="message" id="message"></textarea>
+      <button class="relative bottom-9 right-3 rounded-full float-right border bg-green-600 text-white text-sm py-1 px-4">Send</button>
     </form>
   </div>
 </div>
