@@ -65,7 +65,7 @@ router.get('/:companyId/details', async (req, res, next) => {
                 isFavorite = true
             }
         });
-        
+
         res.render('dev/companyDetails.hbs', {
             companyUser,
             isFavorite
@@ -102,7 +102,9 @@ router.post('/:companyId/details', async (req, res, next) => {
 router.get('/profile', async (req, res, next) => {
     
     try {
+
         const devUser = await Dev.findById(req.session.User._id).populate('favouritesCompanies')
+
         res.render('dev/profile.hbs',{
             devUser
         })
