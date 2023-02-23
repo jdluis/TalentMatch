@@ -1,32 +1,64 @@
-<div>
-  <h1>{{companyUser.name}} Profile</h1>
-  <div>
-    <div>
-      <img src="{{companyUser.img}}" alt="{{companyUser.name}}">
+<div class=" min-h-screen flex flex-col items-center my-12 mx-4">
+    <div class="w-14 h-auto text-center">
+        <img class="w-full h-full rounded-full border border-green-600" src="{{companyUser.img}}" alt="{{companyUser.companyName}}" />
     </div>
-    <p><span>Name: </span>{{companyUser.companyName}}</p>
-    <p><span>email: </span>{{companyUser.email}}</p>
-    <p><span>Telephone: </span>{{companyUser.telephone}}</p>
-    <p><span>Location: </span>{{companyUser.direction}}</p>
-    <p><span>Description: </span>{{companyUser.description}}</p>
-    <p><span>Tech Stack: </span></p>
-    <ul>
-      {{#each companyUser.techStack}}
-        <li>{{this}}</li>
-      {{/each}}
-    </ul>
-    <a href="{{companyUser.website}}">Web Site</a>
-    <a href="{{companyUser.linkedin}}">Linkedin</a>
-    <a href="{{companyUser.facebook}}">Facebook</a>
-    <a href="{{companyUser.twitter}}">Twitter</a>
-    <p><span>Developers Following: </span></p>
-    <ul>
-      {{#each companyUser.markedDevs}}
-       <li><a href="/company/{{this._id}}/details">{{this.name}}</a></li>
-      {{/each}}
-    </ul>
-  </div>
-  <div>
-    <a href="/company/profile/edit"><button>Edit Profile</button></a>
-  </div>
+    <div class="mt-3">
+        <h1 class="text-lg inline text-green-600">{{companyUser.companyName}}</h1>
+        <a href="/company/profile/edit"><button class="text-green-600">✎</button></a>
+    </div>
+    <div class="mt-6 w-full">
+        <p class="text-gray-600 min-w-full border-b border-green-600">Company Details</p>
+        <div class="flex justify-between my-4 mx-2 flex-wrap">
+            <p class="text-green-600"><span>Name:</span></p>
+            <p class="text-gray-600">{{companyUser.companyName}}</p>
+        </div>
+        <div class="flex justify-between my-4 mx-2 flex-wrap">
+            <p class="text-green-600"><span>Email:</span></p>
+            <p class="text-gray-600">{{companyUser.email}}</p>
+        </div>
+        <div class="flex justify-between my-4 mx-2 flex-wrap">
+            <p class="text-green-600"><span>Telephone:</span></p>
+            <p class="text-gray-600">{{devUser.telephone}}</p>
+        </div>
+        <div class="flex justify-between my-4 mx-2 flex-wrap">
+            <p class="text-green-600"><span>Direction:</span></p>
+            <p class="text-gray-600">{{devUser.direction}}</p>
+        </div>
+        <div class="flex flex-col justify-between my-4 mx-2 flex-wrap">
+            <p class="text-green-600 mb-2"><span>Tech Stack:</span></p>
+            <ul class="flex flex-wrap gap-4">
+                {{#each companyUser.techStack}}
+                    <li class="text-gray-600">• {{this}}</li>
+                {{/each}}
+            </ul>
+        </div>
+        <div class="flex flex-col justify-between my-4 mx-2 flex-wrap">
+            <p class="text-green-600 mb-2"><span>Description:</span></p>
+            <p class="text-gray-600">{{companyUser.description}}</p>
+        </div>
+        <div class="flex justify-between my-4 mx-2 flex-wrap">
+            <p class="text-green-600"><span>Web Site:</span></p>
+            <p class="text-gray-600">{{companyUser.website}}</p>
+        </div>
+        <div class="flex justify-between my-4 mx-2 flex-wrap">
+            <p class="text-green-600"><span>Linkedin:</span></p>
+            <p class="text-gray-600">{{companyUser.linkedin}}</p>
+        </div>
+        <div class="flex justify-between my-4 mx-2 flex-wrap">
+            <p class="text-green-600"><span>Facebook:</span></p>
+            <p class="text-gray-600">{{companyUser.facebook}}</p>
+        </div>
+        <div class="flex justify-between my-4 mx-2 flex-wrap">
+            <p class="text-green-600"><span>Twitter:</span></p>
+            <p class="text-gray-600">{{companyUser.twitter}}</p>
+        </div>
+        <div class="flex flex-col justify-between my-4 mx-2 flex-wrap">
+            <p class="text-green-600 mb-2"><span>Developers Following:</span></p>
+            <ul class="flex flex-wrap gap-4">
+                {{#each companyUser.markedDevs}}
+                    <a href="/dev/{{this._id}}/details" class="text-green-800 border-b border-green-600">{{this.name}} {{this.secondName}}</a>
+                {{/each}}
+            </ul>
+        </div>
+    </div>
 </div>

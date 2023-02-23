@@ -1,42 +1,84 @@
-<div>
-    <h1>{{devUser.name}} Profile</h1>
-    <div>
-        <div>
-            <img src="{{devUser.img}}" alt="{{devUser.name}}">
+<div class=" min-h-screen flex flex-col items-center my-12 mx-4">
+    <div class="w-14 h-auto text-center">
+        <img class="w-full h-full rounded-full border border-green-600" src="{{devUser.img}}" alt="{{devUser.name}}" />
+    </div>
+    <div class="mt-3">
+        <h1 class="text-lg inline text-green-600">{{devUser.name}}{{devUSer.secondName}}</h1>
+        <a href="/dev/profile/edit"><button class="text-green-600">✎</button></a>
+    </div>
+    <div class="mt-6 w-full">
+        <p class="text-gray-600 min-w-full border-b border-green-600">Personal Details</p>
+        <div class="flex justify-between my-4 mx-2 flex-wrap">
+            <p class="text-green-600"><span>Name:</span></p>
+            <p class="text-gray-600">{{devUser.name}}</p>
         </div>
-        <p><span>Name: </span>{{devUser.name}}</p>
-        <p><span>Second Name: </span>{{devUser.secondName}}</p>
-        <p><span>email: </span>{{devUser.email}}</p>
-        <p><span>Telephone: </span>{{devUser.telephone}}</p>
-        <p><span>Location: </span>{{devUser.location}}</p>
-        <p><span>Experience: </span>{{devUser.experience}}</p>
-        <p><span>Description: </span>{{devUser.description}}</p>
-        <p><span>Tech Skills: </span></p>
-            <ul>
+        <div class="flex justify-between my-4 mx-2 flex-wrap">
+            <p class="text-green-600"><span>Second Name: </span></p>
+            <p class="text-gray-600">{{devUser.secondName}}</p>
+        </div>
+        <div class="flex justify-between my-4 mx-2 flex-wrap">
+            <p class="text-green-600"><span>Email:</span></p>
+            <p class="text-gray-600">{{devUser.email}}</p>
+        </div>
+        <div class="flex justify-between my-4 mx-2 flex-wrap">
+            <p class="text-green-600"><span>Telephone:</span></p>
+            <p class="text-gray-600">{{devUser.telephone}}</p>
+        </div>
+        <div class="flex justify-between my-4 mx-2 flex-wrap">
+            <p class="text-green-600"><span>Location:</span></p>
+            <p class="text-gray-600">{{devUser.location}}</p>
+        </div>
+        <div class="flex justify-between my-4 mx-2 flex-wrap">
+            <p class="text-green-600"><span>CVs:</span></p>
+            <p class="text-gray-600">{{devUser.resume}}</p>
+        </div>
+        <div class="flex justify-between my-4 mx-2 flex-wrap">
+            <p class="text-green-600"><span>Linkedin:</span></p>
+            <p class="text-gray-600">{{devUser.linkedin}}</p>
+        </div>
+        <div class="flex justify-between my-4 mx-2 flex-wrap">
+            <p class="text-green-600"><span>Facebook:</span></p>
+            <p class="text-gray-600">{{devUser.facebook}}</p>
+        </div>
+        <div class="flex justify-between my-4 mx-2 flex-wrap">
+            <p class="text-green-600"><span>Twitter:</span></p>
+            <p class="text-gray-600">{{devUser.twitter}}</p>
+        </div>
+        <div class="flex justify-between my-4 mx-2 flex-wrap">
+            <p class="text-green-600"><span>Is currently working:</span></p>
+            <p class="text-gray-600">{{#if devUser.isWorking}}Yes{{else}}No{{/if}}</p>
+        </div>
+        <div class="flex flex-col justify-between my-4 mx-2 flex-wrap">
+            <p class="text-green-600 mb-2"><span>Tech Skills:</span></p>
+            <ul class="flex flex-wrap gap-4">
                 {{#each devUser.techSkills}}
-                    <li>{{this}}</li>
+                    <li class="text-gray-600">• {{this}}</li>
                 {{/each}}
             </ul>
-        <p><span>Soft Skills: </span></p>
-            <ul>
+        </div>
+        <div class="flex flex-col justify-between my-4 mx-2 flex-wrap">
+            <p class="text-green-600 mb-2"><span>Soft Skills:</span></p>
+            <ul class="flex flex-wrap gap-4">
                 {{#each devUser.softSkills}}
-                    <li>{{this}}</li>
+                    <li class="text-gray-600">• {{this}}</li>
                 {{/each}}
             </ul>
-        <a href="{{devUser.resume}}">Resume</a>
-        <a href="{{devUser.linkedin}}">Linkedin</a>
-        <a href="{{devUser.facebook}}">Facebook</a>
-        <a href="{{devUser.twitter}}">Twitter</a>
-        <p><span>Favourite Companies: </span></p>
-            <ul>
+        </div>
+        <div class="flex flex-col justify-between my-4 mx-2 flex-wrap">
+            <p class="text-green-600 mb-2"><span>Experience:</span></p>
+            <p class="text-gray-600">{{devUser.experience}}</p>
+        </div>
+        <div class="flex flex-col justify-between my-4 mx-2 flex-wrap">
+            <p class="text-green-600 mb-2"><span>Description:</span></p>
+            <p class="text-gray-600">{{devUser.description}}</p>
+        </div>
+        <div class="flex flex-col justify-between my-4 mx-2 flex-wrap">
+            <p class="text-green-600 mb-2"><span>Favourite Companies:</span></p>
+            <ul class="flex flex-wrap gap-4">
                 {{#each devUser.favouritesCompanies}}
-                    <a href="/dev/{{this._id}}/details">{{this.companyName}}</a>
+                    <a href="/dev/{{this._id}}/details" class="text-green-800 border-b border-green-600">{{this.companyName}}</a>
                 {{/each}}
             </ul>
-        <p><span>Is currently working: </span>{{#if devUser.isWorking}}Yes{{else}}No{{/if}}</p>  
+        </div>
     </div>
-    <div>
-        <a href="/dev/profile/edit"><button>Edit Profile</button></a>
-    </div>
-    
 </div>
