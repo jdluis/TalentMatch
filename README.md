@@ -1,4 +1,11 @@
 # TalentMatch
+
+![Logo Talent Match](public/images/logoTalentMatch.png)
+
+## This app has been developed by:
+ ### [Alberto Pérez León](https://github.com/Apleon89)
+ ### [Jose Daniel De Luis Ramírez](https://github.com/jdluis)
+
 <br>
 
 ## Description
@@ -429,7 +436,7 @@ const messageSchema = new Schema({
 
 ### Trello
 
-[Link to your trello board](https://trello.com/b/lzBvPe8z/talentmatch) or picture of your physical board
+[Link to your trello board](https://trello.com/b/lzBvPe8z/talentmatch)
 
 ### Git
 
