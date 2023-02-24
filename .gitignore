@@ -6,6 +6,3 @@ npm-debug.log
 
 # Environment Variables should NEVER be published
 .env
-
-# Remember allow in production
-public/stylesheets/output.css
