@@ -440,15 +440,11 @@ const messageSchema = new Schema({
 
 ### Git
 
-The url to your repository and to your deployed project
-
 [Repository Link](https://github.com/jdluis/TalentMatch)
 
 [Deploy Link](https://talentmatch.cyclic.app/)
 
 ### Slides
-
-The url to your presentation slides
 
 [Slides Link](https://docs.google.com/presentation/d/1dsCFgbPfTLp3lYZvawO0Kjkdkr--jp7IKilH9hGbb7k/edit#slide=id.p)
 
